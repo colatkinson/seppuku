@@ -1,3 +1,5 @@
+import * as seedrandom from 'seedrandom';
+
 function printBoard(board: number[]) {
     for (var i = 0; i < 81; ++i) {
         if (board[i] !== 0) {
@@ -182,78 +184,29 @@ function genFromSolved(board: number[]) {
     return newBoard;
 }
 
-function main() {
-    // var board = [];
-    // for (var i = 0; i < 81; ++i) {
-    //     // board.push(Math.floor(Math.random() * 10));
-    //     board.push(0);
-    // }
-    // var board = [4, 0, 0, 1, 0, 6, 0, 5, 0,
-    //              6, 0, 0, 0, 0, 3, 9, 1, 2,
-    //              0, 9, 0, 7, 0, 2, 0, 8, 0,
-    //              5, 0, 0, 0, 1, 0, 0, 9, 0,
-    //              0, 0, 0, 2, 8, 7, 0, 0, 0,
-    //              0, 2, 0, 0, 3, 0, 0, 0, 1,
-    //              0, 1, 0, 9, 0, 8, 0, 4, 0,
-    //              3, 7, 9, 4, 0, 0, 0, 0, 8,
-    //              0, 4, 0, 3, 0, 5, 0, 0, 9];
-    var board = [
-        6, 0, 0, 0, 1, 7, 5, 2, 0,
-        1, 5, 7, 2, 6, 4, 0, 9, 8,
-        0, 4, 8, 0, 3, 0, 7, 0, 6,
-        8, 3, 2, 0, 5, 6, 9, 0, 1,
-        0, 7, 9, 1, 8, 3, 6, 4, 0,
-        0, 0, 6, 0, 9, 0, 8, 0, 5,
-        0, 8, 4, 3, 0, 5, 0, 0, 9,
-        0, 6, 0, 9, 4, 0, 2, 8, 7,
-        9, 2, 1, 6, 7, 0, 0, 5, 3
-    ];
-    printBoard(board);
+function genSolnFromSeed(seed: string) {
+    const rng = seedrandom(seed);
 
-    printBoard(solve(board));
-    // console.log(getSquare(board, 2, 2));
-
-    // console.log(isBoardValid(board));
-
-    // var solved = solve(board);
-    // printBoard(solved);
-
-    var blank = [];
+    var board = [];
     for (var i = 0; i < 81; ++i) {
-        blank.push(0);
+        board.push(0);
     }
-    // blank[0] = 9;
 
-    var badBoard = [
-        3, 0, 0, 0, 1, 7, 5, 2, 0,
-        1, 5, 7, 2, 6, 4, 0, 9, 8,
-        0, 4, 8, 0, 3, 0, 7, 0, 6,
-        8, 3, 2, 0, 5, 6, 9, 0, 1,
-        0, 7, 9, 1, 8, 3, 6, 4, 0,
-        0, 0, 6, 0, 9, 0, 8, 0, 5,
-        0, 8, 4, 3, 0, 5, 0, 0, 9,
-        0, 6, 0, 9, 4, 0, 2, 8, 7,
-        9, 2, 1, 6, 7, 0, 0, 5, 3
-    ];
+    for (var num = 1; num <= 9; ++num) {
+        const pos = Math.floor(rng() * 81);
+        board[pos] = num;
+    }
 
-    var solved = solve(board);
+    return solve(board);
+}
 
-    console.log(canBeDug(solved, 0, 0));
+function main() {
+    const soln = genSolnFromSeed('hello.world.jaypeg');
 
-    console.log('-----');
+    const puzzle = genFromSolved(soln);
 
-    // console.log(canBeDug(blank, 0, 0));
-    printBoard(genFromSolved(solved));
-
-    // printBoard(solve(blank));
-    //
-    // var visited = {};
-    //
-    // console.log(solve(board, visited));
-
-    // console.log(visited);
-
-    // console.log(canBeDug(board, 0, 0));
+    printBoard(soln);
+    printBoard(puzzle);
 }
 
 main();
