@@ -8,7 +8,7 @@ class App extends React.Component<{}, {}> {
     return (
       <div className="App">
         <div className = "boardHolderDiv">
-            <Board seed = "hello." />
+            <Board seed = "hello." onClick = {(e) => console.log(e.target)} />
         </div>
       </div>
     );

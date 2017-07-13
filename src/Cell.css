@@ -5,9 +5,7 @@
     border-width: thin;
     border-style: solid;*/
     /*background-color: tomato;*/
-    outline: 1px solid #ccc;
-}
-
-.even {
-    background-color: #c0ffee;
+    outline: 1px solid #673ab7;
+    font-size: 4vh;
+    color: #333;
 }

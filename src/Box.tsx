@@ -6,6 +6,7 @@ import './Box.css';
 interface BoxProps {
     values: number[];
     style: Object;
+    onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
 }
 
 class Box extends React.Component<BoxProps, {}> {
@@ -20,6 +21,7 @@ class Box extends React.Component<BoxProps, {}> {
             for (var j = 0; j < 3; ++j) {
                 cells.push(
                     <Cell
+                        onClick = {this.props.onClick}
                         value = {this.props.values[i * 3 + j]}
                         id = {i * 3 + j}
                     />

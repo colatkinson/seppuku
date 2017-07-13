@@ -7,9 +7,11 @@ import sku from './sudoku';
 
 interface BoardProps {
     seed: string;
+    onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
 }
 
 interface BoardState {
+    soln: number[];
     values: number[];
 }
 
@@ -17,8 +19,11 @@ class Board extends React.Component<BoardProps, BoardState> {
     constructor(props: BoardProps) {
         super(props);
 
+        const soln = sku.genSolnFromSeed(props.seed);
+
         this.state = {
-            values: sku.genSolnFromSeed(props.seed)
+            soln: soln,
+            values: sku.genFromSolved(soln)
         };
 
         // console.log(this.state);
@@ -31,10 +36,11 @@ class Board extends React.Component<BoardProps, BoardState> {
             for (var j = 0; j < 3; ++j) {
                 boxes.push(
                     <Box
+                        onClick = {this.props.onClick}
                         values = {sku.getSquare(this.state.values, j, i)}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
-                                '#c0ffee' : 'white'}}
+                                '#d1c4e9' : 'white'}}
                     />
                 );
             }

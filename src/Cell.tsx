@@ -5,6 +5,7 @@ import './Cell.css';
 interface CellProps {
     value: number;
     id: number;
+    onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
 }
 
 class Cell extends React.Component<CellProps, {}> {
@@ -15,10 +16,11 @@ class Cell extends React.Component<CellProps, {}> {
     render() {
         return (
             <div
+                onClick = {this.props.onClick}
                 className = "skuCell"
                 id = {'cell' + this.props.id}
             >
-                {this.props.value}
+                {(this.props.value === 0) ? '' : this.props.value}
             </div>
         );
     }

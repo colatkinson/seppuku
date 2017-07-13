@@ -18,7 +18,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     width: 18vh;
-    outline: 1px solid #ccc;
+    outline: 3px solid #673ab7;
 }
 
 .skuBoxRow {
