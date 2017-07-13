@@ -1,0 +1,13 @@
+.skuCell {
+    display: inline-block;
+    flex: 1;
+    /*border-color: #333;
+    border-width: thin;
+    border-style: solid;*/
+    /*background-color: tomato;*/
+    outline: 1px solid #ccc;
+}
+
+.even {
+    background-color: #c0ffee;
+}

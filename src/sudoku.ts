@@ -1,24 +1,24 @@
 import * as seedrandom from 'seedrandom';
 
-function printBoard(board: number[]) {
-    for (var i = 0; i < 81; ++i) {
-        if (board[i] !== 0) {
-            process.stdout.write(board[i].toString() + ' ');
-        } else {
-            process.stdout.write('_ ');
-        }
-
-        if ((i + 1) % 3 === 0) {
-            process.stdout.write('  ');
-        }
-        if ((i + 1) % 9 === 0) {
-            process.stdout.write('\n');
-        }
-        if ((i + 1) % 27 === 0) {
-            process.stdout.write('\n');
-        }
-    }
-}
+// function printBoard(board: number[]) {
+//     for (var i = 0; i < 81; ++i) {
+//         if (board[i] !== 0) {
+//             process.stdout.write(board[i].toString() + ' ');
+//         } else {
+//             process.stdout.write('_ ');
+//         }
+//
+//         if ((i + 1) % 3 === 0) {
+//             process.stdout.write('  ');
+//         }
+//         if ((i + 1) % 9 === 0) {
+//             process.stdout.write('\n');
+//         }
+//         if ((i + 1) % 27 === 0) {
+//             process.stdout.write('\n');
+//         }
+//     }
+// }
 
 function getRow(board: number[], ind: number) {
     return board.slice(ind * 9, (ind + 1) * 9);
@@ -74,47 +74,6 @@ function isBoardValid(board: number[]) {
 
     return true;
 }
-
-// function solve(board: number[], visited: Object) {
-//     console.log(visited);
-//     // printBoard(board);
-//
-//     if (visited.hasOwnProperty(board.join(''))) {
-//         return [];
-//     }
-//
-//     visited[board.join('')] = true;
-//     console.log("--------");
-//     if (!isBoardValid(board)) {
-//         return [];
-//     }
-//
-//     if (board.indexOf(0) === -1) {
-//         return board;
-//     }
-//
-//     for (var i = 0; i < 81; ++i) {
-//         if (board[i] !== 0) {
-//             continue;
-//         }
-//
-//         for (var num = 1; num <= 9; ++num) {
-//             var newBoard = board.slice();
-//             newBoard[i] = num;
-//
-//             if (visited.hasOwnProperty(newBoard.join(''))) {
-//                 continue;
-//             }
-//
-//             const val: number[] = solve(newBoard, visited);
-//             if (val.length > 0) {
-//                 return val;
-//             }
-//         }
-//     }
-//
-//     return [];
-// }
 
 function solve(board: number[]): number[] {
     if (!isBoardValid(board)) {
@@ -200,13 +159,18 @@ function genSolnFromSeed(seed: string) {
     return solve(board);
 }
 
-function main() {
-    const soln = genSolnFromSeed('hello.world.jaypeg');
+// function main() {
+//     const soln = genSolnFromSeed('hello.world.jaypeg');
+//
+//     const puzzle = genFromSolved(soln);
+//
+//     printBoard(soln);
+//     printBoard(puzzle);
+// }
 
-    const puzzle = genFromSolved(soln);
-
-    printBoard(soln);
-    printBoard(puzzle);
-}
-
-main();
+// main();
+export default {
+    genSolnFromSeed: genSolnFromSeed,
+    genFromSolved: genFromSolved,
+    getSquare: getSquare
+};

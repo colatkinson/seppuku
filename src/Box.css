@@ -1,0 +1,30 @@
+/*.skuBox {
+    display: flex;
+    flex-direction: column;
+    width: 36vh;
+    flex-wrap: wrap;
+}
+
+.skuBoxRow {
+    flex: 1;
+    flex-direction: row;
+    line-height: 12vh;
+    justify-content: space-around;
+}*/
+
+
+.skuBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 18vh;
+    outline: 1px solid #ccc;
+}
+
+.skuBoxRow {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    line-height: 6vh;
+    justify-content: space-between;
+}
