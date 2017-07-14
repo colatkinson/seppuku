@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 
 import Board from './Board';
+import NumberPad from './NumberPad';
 
 class App extends React.Component<{}, {}> {
   render() {
@@ -9,6 +10,9 @@ class App extends React.Component<{}, {}> {
       <div className="App">
         <div className = "boardHolderDiv">
             <Board seed = "hello." />
+        </div>
+        <div className = "numPadHolderDiv">
+            <NumberPad onClick = {console.log} />
         </div>
       </div>
     );
