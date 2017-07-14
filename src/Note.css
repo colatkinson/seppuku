@@ -1,0 +1,7 @@
+.skuNote {
+    display: inline-block;
+    flex: 1;
+    font-size: 1vh;
+    color: #555;
+    font-weight: lighter;
+}

@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import './Cell.css';
 
+import NoteBox from './NoteBox';
+
 interface CellProps {
     value: number;
     id: number;
@@ -19,6 +21,12 @@ class Cell extends React.Component<CellProps, {}> {
 
     render() {
         const invalid = this.props.value !== 0 && this.props.soln !== this.props.value;
+        var content = (<span>{this.props.value}</span>);
+        if (this.props.value === 0) {
+            content = (
+                <NoteBox values = {[true, true, true, true, true, true, true, true, true]} />
+            );
+        }
         return (
             <div
                 onClick = {this.props.onClick}
@@ -29,7 +37,7 @@ class Cell extends React.Component<CellProps, {}> {
                              (invalid ? ' invalid' : '')}
                 id = {'' + this.props.id}
             >
-                {(this.props.value === 0) ? '' : this.props.value}
+                {content}
             </div>
         );
     }

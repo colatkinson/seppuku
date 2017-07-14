@@ -1,0 +1,14 @@
+.skuNoteBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 6vh;
+}
+
+.skuNoteBoxRow {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    line-height: 2vh;
+    justify-content: space-between;
+}
