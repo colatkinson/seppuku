@@ -4,8 +4,13 @@
     outline: 1px solid #673ab7;
     font-size: 4vh;
     color: #333;
+    font-weight: lighter;
 }
 
 .skuCell.sel {
     background-color: rgba(0, 0, 0, 0.15);
+}
+
+.skuCell.orig {
+    font-weight: 800;
 }

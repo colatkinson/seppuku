@@ -62,8 +62,12 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
             });
         case ENTER_NUM:
             if (typeof state.curBoard === 'undefined' ||
+                typeof state.origBoard === 'undefined' ||
                 typeof state.selectedIndex === 'undefined' ||
                 typeof action.value === 'undefined') {
+                return state;
+            }
+            if (state.origBoard[state.selectedIndex] !== 0) {
                 return state;
             }
             const newBoard = state.curBoard.slice();

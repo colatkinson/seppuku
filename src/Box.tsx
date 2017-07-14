@@ -5,6 +5,7 @@ import './Box.css';
 
 interface BoxProps {
     values: number[];
+    origValues: number[];
     ids: number[];
     selectedIndex?: number;
     style: Object;
@@ -25,6 +26,7 @@ class Box extends React.Component<BoxProps, {}> {
                 cells.push(
                     <Cell
                         sel = {this.props.ids[i * 3 + j] === this.props.selectedIndex}
+                        orig = {this.props.origValues[i * 3 + j] !== 0}
                         key = {i * 3 + j}
                         onClick = {this.props.onClick}
                         onKeyUp = {this.props.onKeyUp}

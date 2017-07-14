@@ -1,8 +1,11 @@
 import * as React from 'react';
 import NumberButton from './NumberButton';
 
+import { connect } from 'react-redux';
+import { enterNum, SudokuState } from './reduxFns';
+
 interface NumberPadProps {
-    onClick: Function;
+    onClick?: Function;
 }
 
 class NumberPad extends React.Component<NumberPadProps, {}> {
@@ -30,4 +33,21 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
     }
 }
 
-export default NumberPad;
+const mapStateToProps = (state: Function) => {
+    return {};
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        onClick: (val: number) => {
+            dispatch(enterNum(val));
+        }
+    };
+};
+
+const NumberPadWrap = connect<SudokuState, {}, NumberPadProps>(
+    mapStateToProps,
+    mapDispatchToProps
+)(NumberPad);
+
+export default NumberPadWrap;
