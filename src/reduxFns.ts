@@ -1,4 +1,4 @@
-import { GEN_BOARD, SELECT_CELL, ENTER_NUM } from './actionTypes';
+import { GEN_BOARD, SELECT_CELL, ENTER_NUM, SET_NOTE_MODE } from './actionTypes';
 
 function genBoard(board: number[], soln: number[]) {
     return {
@@ -22,12 +22,20 @@ function enterNum(value: number) {
     };
 }
 
+function setNoteMode(noteMode: boolean) {
+    return {
+        type: SET_NOTE_MODE,
+        noteMode: noteMode
+    };
+}
+
 interface SudokuAction {
     type: string;
     selectedIndex?: number;
     board?: number[];
     soln?: number[];
     value?: number;
+    noteMode?: boolean;
 }
 
 interface SudokuState {
@@ -35,13 +43,15 @@ interface SudokuState {
     origBoard?: number[];
     soln?: number[];
     curBoard?: number[];
+    noteMode?: boolean;
 }
 
 const initialState: SudokuState = {
     selectedIndex: undefined,
     origBoard: undefined,
     soln: undefined,
-    curBoard: undefined
+    curBoard: undefined,
+    noteMode: false
 };
 
 function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
@@ -75,6 +85,10 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
             return Object.assign({}, state, {
                 curBoard: newBoard
             });
+        case SET_NOTE_MODE:
+            return Object.assign({}, state, {
+                noteMode: action.noteMode
+            });
         default:
             return state;
     }
@@ -84,6 +98,7 @@ export {
     genBoard,
     selectCell,
     enterNum,
+    setNoteMode,
     sudokuApp,
     SudokuState
 };

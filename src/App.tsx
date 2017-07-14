@@ -12,7 +12,7 @@ class App extends React.Component<{}, {}> {
             <Board seed = "hello." />
         </div>
         <div className = "numPadHolderDiv">
-            <NumberPad onClick = {console.log} />
+            <NumberPad />
         </div>
       </div>
     );

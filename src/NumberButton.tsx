@@ -3,7 +3,7 @@ import * as React from 'react';
 import './NumberButton.css';
 
 interface NumberButtonProps {
-    value: number;
+    value: number | string;
     onClick?: Function;
 }
 

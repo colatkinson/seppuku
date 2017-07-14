@@ -2,10 +2,12 @@ import * as React from 'react';
 import NumberButton from './NumberButton';
 
 import { connect } from 'react-redux';
-import { enterNum, SudokuState } from './reduxFns';
+import { enterNum, setNoteMode, SudokuState } from './reduxFns';
 
 interface NumberPadProps {
     onClick?: Function;
+    setNoteMode?: Function;
+    noteMode?: boolean;
 }
 
 class NumberPad extends React.Component<NumberPadProps, {}> {
@@ -31,22 +33,34 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
             </div>
         );
 
+        const newFn = () => {
+            if (typeof this.props.setNoteMode !== 'undefined') {
+                this.props.setNoteMode(!this.props.noteMode);
+            }
+        };
+
         return (
             <div className = "numPad">
+                <NumberButton value = {!this.props.noteMode ? '\u270f' : '\u2711'} onClick = {newFn} />
                 {numPadRows}
             </div>
         );
     }
 }
 
-const mapStateToProps = (state: Function) => {
-    return {};
+const mapStateToProps = (state: SudokuState) => {
+    return {
+        noteMode: state.noteMode
+    };
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
         onClick: (val: number) => {
             dispatch(enterNum(val));
+        },
+        setNoteMode: (val: boolean) => {
+            dispatch(setNoteMode(val));
         }
     };
 };
