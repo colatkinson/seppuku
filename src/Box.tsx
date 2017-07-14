@@ -5,6 +5,8 @@ import './Box.css';
 
 interface BoxProps {
     values: number[];
+    ids: number[];
+    selectedIndex?: number;
     style: Object;
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
 }
@@ -21,14 +23,16 @@ class Box extends React.Component<BoxProps, {}> {
             for (var j = 0; j < 3; ++j) {
                 cells.push(
                     <Cell
+                        sel = {this.props.ids[i * 3 + j] === this.props.selectedIndex}
+                        key = {i * 3 + j}
                         onClick = {this.props.onClick}
                         value = {this.props.values[i * 3 + j]}
-                        id = {i * 3 + j}
+                        id = {this.props.ids[i * 3 + j]}
                     />
                 );
             }
             rows.push(
-                <div className = "skuBoxRow">
+                <div className = "skuBoxRow" key = {i}>
                     {cells}
                 </div>
             );

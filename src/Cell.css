@@ -1,11 +1,11 @@
 .skuCell {
     display: inline-block;
     flex: 1;
-    /*border-color: #333;
-    border-width: thin;
-    border-style: solid;*/
-    /*background-color: tomato;*/
     outline: 1px solid #673ab7;
     font-size: 4vh;
     color: #333;
+}
+
+.skuCell.sel {
+    background-color: rgba(0, 0, 0, 0.15);
 }

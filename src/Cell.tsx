@@ -5,6 +5,7 @@ import './Cell.css';
 interface CellProps {
     value: number;
     id: number;
+    sel: boolean;
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
 }
 
@@ -17,8 +18,8 @@ class Cell extends React.Component<CellProps, {}> {
         return (
             <div
                 onClick = {this.props.onClick}
-                className = "skuCell"
-                id = {'cell' + this.props.id}
+                className = {'skuCell' + (this.props.sel ? ' sel' : '')}
+                id = {'' + this.props.id}
             >
                 {(this.props.value === 0) ? '' : this.props.value}
             </div>

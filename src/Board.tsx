@@ -5,9 +5,13 @@ import './Board.css';
 
 import sku from './sudoku';
 
+import { connect } from 'react-redux';
+import { selectCell, SudokuState } from './reduxFns';
+
 interface BoardProps {
     seed: string;
-    onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
+    onCellClicked?: Function;
+    selectedIndex?: number;
 }
 
 interface BoardState {
@@ -29,15 +33,31 @@ class Board extends React.Component<BoardProps, BoardState> {
         // console.log(this.state);
     }
 
+    cellClick(e: React.MouseEvent<HTMLDivElement>) {
+        if (typeof this.props.onCellClicked === 'undefined') {
+            return;
+        }
+
+        this.props.onCellClicked(Number.parseInt(e.currentTarget.id));
+    }
+
     render() {
+        const boardIds = [];
+        for (var k = 0; k < 81; ++k) {
+            boardIds.push(k);
+        }
+
         var rows = [];
         for (var i = 0; i < 3; ++i) {
             var boxes = [];
             for (var j = 0; j < 3; ++j) {
                 boxes.push(
                     <Box
-                        onClick = {this.props.onClick}
+                        selectedIndex = {this.props.selectedIndex}
+                        key = {i * 3 + j}
+                        onClick = {e => this.cellClick(e)}
                         values = {sku.getSquare(this.state.values, j, i)}
+                        ids = {sku.getSquare(boardIds, j, i)}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
                                 '#d1c4e9' : 'white'}}
@@ -45,7 +65,7 @@ class Board extends React.Component<BoardProps, BoardState> {
                 );
             }
             rows.push(
-                <div className = "skuBoardRow">
+                <div className = "skuBoardRow" key = {i}>
                     {boxes}
                 </div>
             );
@@ -58,4 +78,23 @@ class Board extends React.Component<BoardProps, BoardState> {
     }
 }
 
-export default Board;
+const mapStateToProps = (state: SudokuState) => {
+    return {
+        selectedIndex: state.selectedIndex
+    };
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        onCellClicked: (index: number) => {
+            dispatch(selectCell(index));
+        }
+    };
+};
+
+const BoardWrap = connect<SudokuState, {}, BoardProps>(
+    mapStateToProps,
+    mapDispatchToProps
+)(Board);
+
+export default BoardWrap;

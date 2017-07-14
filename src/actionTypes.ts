@@ -1,0 +1,3 @@
+const SELECT_CELL = 'SELECT_CELL';
+
+export {SELECT_CELL};
