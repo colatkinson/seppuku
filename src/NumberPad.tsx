@@ -25,6 +25,12 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
             );
         }
 
+        numPadRows.push(
+            <div className = "numPadRow" key = {0}>
+                <NumberButton value = {0} onClick = {this.props.onClick} key = {0} />
+            </div>
+        );
+
         return (
             <div className = "numPad">
                 {numPadRows}

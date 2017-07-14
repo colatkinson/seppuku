@@ -14,3 +14,8 @@
 .skuCell.orig {
     font-weight: 800;
 }
+
+.skuCell.invalid {
+    background-color: rgba(229, 57, 37, 0.15);
+    color: #e53925;
+}

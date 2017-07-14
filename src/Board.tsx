@@ -15,6 +15,7 @@ interface BoardProps {
     selectedIndex?: number;
     curBoard?: number[];
     origBoard?: number[];
+    solnBoard?: number[];
 }
 
 class Board extends React.Component<BoardProps, {}> {
@@ -57,6 +58,10 @@ class Board extends React.Component<BoardProps, {}> {
                          ? zeros
                          : this.props.origBoard;
 
+        const solnVals = (typeof this.props.solnBoard === 'undefined')
+                         ? zeros
+                         : this.props.solnBoard;
+
         var rows = [];
         for (var i = 0; i < 3; ++i) {
             var boxes = [];
@@ -69,6 +74,7 @@ class Board extends React.Component<BoardProps, {}> {
                         onKeyUp = {e => this.keyUp(e)}
                         values = {sku.getSquare(vals, j, i)}
                         origValues = {sku.getSquare(origVals, j, i)}
+                        solns = {sku.getSquare(solnVals, j, i)}
                         ids = {sku.getSquare(boardIds, j, i)}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
@@ -94,7 +100,8 @@ const mapStateToProps = (state: SudokuState) => {
     return {
         selectedIndex: state.selectedIndex,
         curBoard: state.curBoard,
-        origBoard: state.origBoard
+        origBoard: state.origBoard,
+        solnBoard: state.soln
     };
 };
 

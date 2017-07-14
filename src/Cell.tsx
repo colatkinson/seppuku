@@ -7,6 +7,7 @@ interface CellProps {
     id: number;
     sel: boolean;
     orig: boolean;
+    soln: number;
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
     onKeyUp: React.EventHandler<React.KeyboardEvent<HTMLDivElement>>;
 }
@@ -17,11 +18,15 @@ class Cell extends React.Component<CellProps, {}> {
     }
 
     render() {
+        const invalid = this.props.value !== 0 && this.props.soln !== this.props.value;
         return (
             <div
                 onClick = {this.props.onClick}
                 onKeyUp = {this.props.onKeyUp}
-                className = {'skuCell' + (this.props.sel ? ' sel' : '') + (this.props.orig ? ' orig' : '')}
+                className = {'skuCell' +
+                             (this.props.sel ? ' sel' : '') +
+                             (this.props.orig ? ' orig' : '') +
+                             (invalid ? ' invalid' : '')}
                 id = {'' + this.props.id}
             >
                 {(this.props.value === 0) ? '' : this.props.value}

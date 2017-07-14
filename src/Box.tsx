@@ -5,6 +5,7 @@ import './Box.css';
 
 interface BoxProps {
     values: number[];
+    solns: number[];
     origValues: number[];
     ids: number[];
     selectedIndex?: number;
@@ -31,6 +32,7 @@ class Box extends React.Component<BoxProps, {}> {
                         onClick = {this.props.onClick}
                         onKeyUp = {this.props.onKeyUp}
                         value = {this.props.values[i * 3 + j]}
+                        soln = {this.props.solns[i * 3 + j]}
                         id = {this.props.ids[i * 3 + j]}
                     />
                 );
