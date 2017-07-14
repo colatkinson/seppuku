@@ -9,6 +9,7 @@ interface BoxProps {
     selectedIndex?: number;
     style: Object;
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
+    onKeyUp: React.EventHandler<React.KeyboardEvent<HTMLDivElement>>;
 }
 
 class Box extends React.Component<BoxProps, {}> {
@@ -26,6 +27,7 @@ class Box extends React.Component<BoxProps, {}> {
                         sel = {this.props.ids[i * 3 + j] === this.props.selectedIndex}
                         key = {i * 3 + j}
                         onClick = {this.props.onClick}
+                        onKeyUp = {this.props.onKeyUp}
                         value = {this.props.values[i * 3 + j]}
                         id = {this.props.ids[i * 3 + j]}
                     />

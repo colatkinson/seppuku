@@ -16,30 +16,16 @@ interface BoardProps {
     curBoard?: number[];
 }
 
-// interface BoardState {
-//     soln: number[];
-//     values: number[];
-// }
-
 class Board extends React.Component<BoardProps, {}> {
     constructor(props: BoardProps) {
         super(props);
 
         const soln = sku.genSolnFromSeed(props.seed);
 
-        console.log(props);
-
         if (typeof props.onBoardGen === 'undefined') {
             return;
         }
         props.onBoardGen(sku.genFromSolved(soln), soln);
-
-        // this.state = {
-        //     soln: soln,
-        //     values: sku.genFromSolved(soln)
-        // };
-
-        // console.log(this.state);
     }
 
     cellClick(e: React.MouseEvent<HTMLDivElement>) {
@@ -48,6 +34,10 @@ class Board extends React.Component<BoardProps, {}> {
         }
 
         this.props.onCellClicked(Number.parseInt(e.currentTarget.id));
+    }
+
+    keyUp(e: React.KeyboardEvent<HTMLDivElement>) {
+        alert(e);
     }
 
     render() {
@@ -71,6 +61,7 @@ class Board extends React.Component<BoardProps, {}> {
                         selectedIndex = {this.props.selectedIndex}
                         key = {i * 3 + j}
                         onClick = {e => this.cellClick(e)}
+                        onKeyUp = {e => this.keyUp(e)}
                         values = {sku.getSquare(vals, j, i)}
                         ids = {sku.getSquare(boardIds, j, i)}
                         style = {{
@@ -86,7 +77,7 @@ class Board extends React.Component<BoardProps, {}> {
             );
         }
         return (
-            <div className = "skuBoard">
+            <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)}>
                 {rows}
             </div>
         );

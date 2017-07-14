@@ -1,4 +1,4 @@
-import { GEN_BOARD, SELECT_CELL } from './actionTypes';
+import { GEN_BOARD, SELECT_CELL, ENTER_NUM } from './actionTypes';
 
 function genBoard(board: number[], soln: number[]) {
     return {
@@ -15,18 +15,19 @@ function selectCell(index: number) {
     };
 }
 
-// function enterNum(value: number) {
-//     return {
-//         type: ENTER_NUM,
-//         value: value
-//     };
-// }
+function enterNum(value: number) {
+    return {
+        type: ENTER_NUM,
+        value: value
+    };
+}
 
 interface SudokuAction {
     type: string;
     selectedIndex?: number;
     board?: number[];
     soln?: number[];
+    value?: number;
 }
 
 interface SudokuState {
@@ -59,6 +60,17 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
             return Object.assign({}, state, {
                 selectedIndex: newInd
             });
+        case ENTER_NUM:
+            if (typeof state.curBoard === 'undefined' ||
+                typeof state.selectedIndex === 'undefined' ||
+                typeof action.value === 'undefined') {
+                return state;
+            }
+            const newBoard = state.curBoard.slice();
+            newBoard[state.selectedIndex] = action.value;
+            return Object.assign({}, state, {
+                curBoard: newBoard
+            });
         default:
             return state;
     }
@@ -67,6 +79,7 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
 export {
     genBoard,
     selectCell,
+    enterNum,
     sudokuApp,
     SudokuState
 };
