@@ -1,4 +1,12 @@
-import { SELECT_CELL } from './actionTypes';
+import { GEN_BOARD, SELECT_CELL } from './actionTypes';
+
+function genBoard(board: number[], soln: number[]) {
+    return {
+        type: GEN_BOARD,
+        board: board,
+        soln: soln
+    };
+}
 
 function selectCell(index: number) {
     return {
@@ -7,21 +15,42 @@ function selectCell(index: number) {
     };
 }
 
+// function enterNum(value: number) {
+//     return {
+//         type: ENTER_NUM,
+//         value: value
+//     };
+// }
+
 interface SudokuAction {
     type: string;
     selectedIndex?: number;
+    board?: number[];
+    soln?: number[];
 }
 
 interface SudokuState {
     selectedIndex?: number;
+    origBoard?: number[];
+    soln?: number[];
+    curBoard?: number[];
 }
 
 const initialState: SudokuState = {
-    selectedIndex: undefined
+    selectedIndex: undefined,
+    origBoard: undefined,
+    soln: undefined,
+    curBoard: undefined
 };
 
 function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
+        case GEN_BOARD:
+            return Object.assign({}, state, {
+                origBoard: action.board,
+                curBoard: action.board,
+                soln: action.soln
+            });
         case SELECT_CELL:
             var newInd = action.selectedIndex;
             if (state.selectedIndex === newInd) {
@@ -36,6 +65,7 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
 }
 
 export {
+    genBoard,
     selectCell,
     sudokuApp,
     SudokuState

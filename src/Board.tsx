@@ -6,29 +6,38 @@ import './Board.css';
 import sku from './sudoku';
 
 import { connect } from 'react-redux';
-import { selectCell, SudokuState } from './reduxFns';
+import { genBoard, selectCell, SudokuState } from './reduxFns';
 
 interface BoardProps {
     seed: string;
     onCellClicked?: Function;
+    onBoardGen?: Function;
     selectedIndex?: number;
+    curBoard?: number[];
 }
 
-interface BoardState {
-    soln: number[];
-    values: number[];
-}
+// interface BoardState {
+//     soln: number[];
+//     values: number[];
+// }
 
-class Board extends React.Component<BoardProps, BoardState> {
+class Board extends React.Component<BoardProps, {}> {
     constructor(props: BoardProps) {
         super(props);
 
         const soln = sku.genSolnFromSeed(props.seed);
 
-        this.state = {
-            soln: soln,
-            values: sku.genFromSolved(soln)
-        };
+        console.log(props);
+
+        if (typeof props.onBoardGen === 'undefined') {
+            return;
+        }
+        props.onBoardGen(sku.genFromSolved(soln), soln);
+
+        // this.state = {
+        //     soln: soln,
+        //     values: sku.genFromSolved(soln)
+        // };
 
         // console.log(this.state);
     }
@@ -43,9 +52,15 @@ class Board extends React.Component<BoardProps, BoardState> {
 
     render() {
         const boardIds = [];
+        const zeros = [];
         for (var k = 0; k < 81; ++k) {
             boardIds.push(k);
+            zeros.push(0);
         }
+
+        const vals = (typeof this.props.curBoard === 'undefined')
+                     ? zeros
+                     : this.props.curBoard;
 
         var rows = [];
         for (var i = 0; i < 3; ++i) {
@@ -56,7 +71,7 @@ class Board extends React.Component<BoardProps, BoardState> {
                         selectedIndex = {this.props.selectedIndex}
                         key = {i * 3 + j}
                         onClick = {e => this.cellClick(e)}
-                        values = {sku.getSquare(this.state.values, j, i)}
+                        values = {sku.getSquare(vals, j, i)}
                         ids = {sku.getSquare(boardIds, j, i)}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
@@ -80,12 +95,16 @@ class Board extends React.Component<BoardProps, BoardState> {
 
 const mapStateToProps = (state: SudokuState) => {
     return {
-        selectedIndex: state.selectedIndex
+        selectedIndex: state.selectedIndex,
+        curBoard: state.curBoard
     };
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
+        onBoardGen: (board: number[], soln: number[]) => {
+            dispatch(genBoard(board, soln));
+        },
         onCellClicked: (index: number) => {
             dispatch(selectCell(index));
         }

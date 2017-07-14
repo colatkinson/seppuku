@@ -1,3 +1,5 @@
+const GEN_BOARD = 'GEN_BOARD';
 const SELECT_CELL = 'SELECT_CELL';
+const ENTER_NUM = 'ENTER_NUM';
 
-export {SELECT_CELL};
+export {GEN_BOARD, SELECT_CELL, ENTER_NUM};
