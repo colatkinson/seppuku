@@ -21,6 +21,7 @@ class NoteBox extends React.Component<NoteBoxProps, {}> {
                     <Note
                         value = {i * 3 + j + 1}
                         display = {this.props.values[i * 3 + j]}
+                        key = {i * 3 + j + 1}
                     />
                 );
             }

@@ -16,6 +16,7 @@ interface BoardProps {
     curBoard?: number[];
     origBoard?: number[];
     solnBoard?: number[];
+    curNotes?: boolean[][];
 }
 
 class Board extends React.Component<BoardProps, {}> {
@@ -62,10 +63,31 @@ class Board extends React.Component<BoardProps, {}> {
                          ? zeros
                          : this.props.solnBoard;
 
+        const falseArr = [];
+        for (var a = 0; a < 9; ++a) {
+            falseArr.push(false);
+        }
+
+        const initNotes = [];
+        for (var b = 0; b < 81; ++b) {
+            initNotes.push(falseArr.slice());
+        }
+
+        const notes = (typeof this.props.curNotes === 'undefined')
+                      ? initNotes
+                      : this.props.curNotes;
+
         var rows = [];
         for (var i = 0; i < 3; ++i) {
             var boxes = [];
             for (var j = 0; j < 3; ++j) {
+                const idSquare = sku.getSquare(boardIds, j, i);
+
+                const noteSquare = [];
+                for (var m = 0; m < idSquare.length; ++m) {
+                    noteSquare.push(notes[idSquare[m]]);
+                }
+
                 boxes.push(
                     <Box
                         selectedIndex = {this.props.selectedIndex}
@@ -75,7 +97,8 @@ class Board extends React.Component<BoardProps, {}> {
                         values = {sku.getSquare(vals, j, i)}
                         origValues = {sku.getSquare(origVals, j, i)}
                         solns = {sku.getSquare(solnVals, j, i)}
-                        ids = {sku.getSquare(boardIds, j, i)}
+                        ids = {idSquare}
+                        notes = {noteSquare}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
                                 '#d1c4e9' : 'white'}}
@@ -101,7 +124,8 @@ const mapStateToProps = (state: SudokuState) => {
         selectedIndex: state.selectedIndex,
         curBoard: state.curBoard,
         origBoard: state.origBoard,
-        solnBoard: state.soln
+        solnBoard: state.soln,
+        curNotes: state.curNotes
     };
 };
 

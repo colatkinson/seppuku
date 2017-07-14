@@ -44,6 +44,17 @@ interface SudokuState {
     soln?: number[];
     curBoard?: number[];
     noteMode?: boolean;
+    curNotes?: boolean[][];
+}
+
+const falseArr = [];
+for (var i = 0; i < 9; ++i) {
+    falseArr.push(false);
+}
+
+const initNotes = [];
+for (var j = 0; j < 81; ++j) {
+    initNotes.push(falseArr.slice());
 }
 
 const initialState: SudokuState = {
@@ -51,7 +62,8 @@ const initialState: SudokuState = {
     origBoard: undefined,
     soln: undefined,
     curBoard: undefined,
-    noteMode: false
+    noteMode: false,
+    curNotes: initNotes
 };
 
 function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
@@ -74,17 +86,35 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
             if (typeof state.curBoard === 'undefined' ||
                 typeof state.origBoard === 'undefined' ||
                 typeof state.selectedIndex === 'undefined' ||
-                typeof action.value === 'undefined') {
+                typeof action.value === 'undefined' ||
+                typeof state.curNotes === 'undefined') {
                 return state;
             }
             if (state.origBoard[state.selectedIndex] !== 0) {
                 return state;
             }
-            const newBoard = state.curBoard.slice();
-            newBoard[state.selectedIndex] = action.value;
-            return Object.assign({}, state, {
-                curBoard: newBoard
-            });
+
+            if (!state.noteMode) {
+                const newBoard = state.curBoard.slice();
+                newBoard[state.selectedIndex] = action.value;
+                return Object.assign({}, state, {
+                    curBoard: newBoard
+                });
+            } else {
+                if (action.value === 0) {
+                    return state;
+                }
+
+                const newNotesArr = state.curNotes.slice();
+                const newCellNotes = newNotesArr[state.selectedIndex].slice();
+                newCellNotes[action.value - 1] = !newCellNotes[action.value - 1];
+
+                newNotesArr[state.selectedIndex] = newCellNotes;
+
+                return Object.assign({}, state, {
+                    curNotes: newNotesArr
+                });
+            }
         case SET_NOTE_MODE:
             return Object.assign({}, state, {
                 noteMode: action.noteMode

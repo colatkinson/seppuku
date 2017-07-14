@@ -10,6 +10,7 @@ interface CellProps {
     sel: boolean;
     orig: boolean;
     soln: number;
+    notes: boolean[];
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
     onKeyUp: React.EventHandler<React.KeyboardEvent<HTMLDivElement>>;
 }
@@ -24,7 +25,7 @@ class Cell extends React.Component<CellProps, {}> {
         var content = (<span>{this.props.value}</span>);
         if (this.props.value === 0) {
             content = (
-                <NoteBox values = {[true, true, true, true, true, true, true, true, true]} />
+                <NoteBox values = {this.props.notes} />
             );
         }
         return (
