@@ -2,13 +2,15 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 6vh;
+    width: 100%;
+    height: 100%;
 }
 
 .skuNoteBoxRow {
     flex: 1;
     display: flex;
     flex-direction: row;
-    line-height: 2vh;
-    justify-content: space-between;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

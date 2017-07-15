@@ -1,10 +1,15 @@
 .skuCell {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     flex: 1;
     outline: 1px solid #673ab7;
-    font-size: 4vh;
+    font-size: 7vh;
+    flex-grow: 1;
     color: #333;
     font-weight: lighter;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
 .skuCell.sel {
@@ -18,4 +23,10 @@
 .skuCell.invalid {
     background-color: rgba(229, 57, 37, 0.15);
     color: #e53925;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .skuCell {
+        font-size: 7vw;
+    }
 }

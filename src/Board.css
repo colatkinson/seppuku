@@ -2,19 +2,22 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    /*height: 50vh;*/
-    width: 54vh;
-    height: 54vh !important;
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*align-content: center;*/
-    /*margin: 0px;*/
+    width: 75vh;
+    height: 75vh !important;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .skuBoard {
+        width: 75vw;
+        height: 75vw !important;
+    }
 }
 
 .skuBoardRow {
+    max-width: 100%;
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: row;
-    line-height: 6vh;
     justify-content: space-between;
 }
