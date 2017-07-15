@@ -4,6 +4,8 @@ import NumberButton from './NumberButton';
 import { connect } from 'react-redux';
 import { enterNum, setNoteMode, SudokuState } from './reduxFns';
 
+import './NumberPad.css';
+
 interface NumberPadProps {
     onClick?: Function;
     setNoteMode?: Function;

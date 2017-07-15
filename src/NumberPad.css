@@ -1,6 +1,27 @@
-.numPadRow, .numPad {
+/*.numPadRow,*/ .numPad {
     justify-content: center;
     align-items: center;
     align-content: center;
     display: flex;
+    flex-direction: column;
+    /*width: 100%;*/
+}
+
+.numPadRow {
+    display: flex;
+    flex-direction: row;
+    /*flex-grow: 1;*/
+    /*justify-content: flex-start;*/
+    /*align-items: flex-start;*/
+    /*align-content: flex-start;*/
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .numPad {
+        flex-direction: row;
+    }
+
+    .numPadRow {
+        flex-direction: column;
+    }
 }

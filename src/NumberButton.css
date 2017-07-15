@@ -6,8 +6,18 @@
     flex: 1;
     width: 6vh;
     line-height: 6vh;
+    /*height: 100%;*/
     font-size: 4vh;
     align-items: center;
     justify-content: center;
-    margin: 2px;
+    margin: 0.25vh;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .numButton {
+        width: 6vw;
+        line-height: 6vw;
+        font-size: 4vw;
+        margin: 0.25vw;
+    }
 }

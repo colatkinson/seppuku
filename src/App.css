@@ -34,15 +34,41 @@
 .boardHolderDiv {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    height: 100%;
-    flex: 2;
+    /*height: 100%;*/
+    /*min-height: 75vh;*/
+    min-height: 0px;
+    min-width: 75vh;
+    flex: 1;
+    padding-right: 4vh;
+    padding-left: 2vh;
 }
 
 .numPadHolderDiv {
     flex: 1;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
+    /*padding-left: 2vh;*/
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .boardHolderDiv {
+        /*padding: 1vw;*/
+        padding: 0px;
+        padding-top: 2vw;
+        padding-bottom: 4vw;
+        align-items: flex-end;
+        justify-content: center;
+        min-height: 75vw;
+        min-width: 0px;
+    }
+
+    .numPadHolderDiv {
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0px;
+        /*padding-top: 4vw;*/
+    }
 }
