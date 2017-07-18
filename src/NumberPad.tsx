@@ -14,25 +14,15 @@ interface NumberPadProps {
 
 class NumberPad extends React.Component<NumberPadProps, {}> {
     render() {
-        const numPadRows = [];
-        for (var i = 1; i <= 9; i += 3) {
-            const numButtons = [];
-            for (var digit = i; digit < i + 3; ++digit) {
-                numButtons.push(
-                    <NumberButton value = {digit} onClick = {this.props.onClick} key = {digit} />
-                );
-            }
-            numPadRows.push(
-                <div className = "numPadRow" key = {i}>
-                    {numButtons}
-                </div>
+        const numButtons = [];
+        for (let digit = 1; digit <= 9; ++digit) {
+            numButtons.push(
+                <NumberButton value = {digit} onClick = {this.props.onClick} key = {digit} />
             );
         }
 
-        numPadRows.push(
-            <div className = "numPadRow" key = {0}>
-                <NumberButton value = {0} onClick = {this.props.onClick} key = {0} />
-            </div>
+        numButtons.push(
+            <NumberButton display = "X" value = {0} onClick = {this.props.onClick} key = {0} />
         );
 
         const newFn = () => {
@@ -44,7 +34,7 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
         return (
             <div className = "numPad">
                 <NumberButton value = {!this.props.noteMode ? '\u270f' : '\u2711'} onClick = {newFn} />
-                {numPadRows}
+                {numButtons}
             </div>
         );
     }

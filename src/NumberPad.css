@@ -4,19 +4,11 @@
     align-content: center;
     display: flex;
     flex-direction: column;
-}
-
-.numPadRow {
-    display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 @media (max-aspect-ratio: 1/1) {
     .numPad {
         flex-direction: row;
-    }
-
-    .numPadRow {
-        flex-direction: column;
     }
 }
