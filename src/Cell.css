@@ -3,7 +3,7 @@
     flex-direction: column;
     flex: 1;
     outline: 1px solid #673ab7;
-    font-size: 7vh;
+    font-size: 7vmin;
     flex-grow: 1;
     color: #333;
     font-weight: lighter;
@@ -23,10 +23,4 @@
 .skuCell.invalid {
     background-color: rgba(229, 57, 37, 0.15);
     color: #e53925;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    .skuCell {
-        font-size: 7vw;
-    }
 }

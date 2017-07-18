@@ -16,10 +16,13 @@
     "@types/seedrandom": "^2.4.27",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-key-handler": "^0.3.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "seedrandom": "^2.4.3"
+    "seedrandom": "^2.4.3",
+    "semantic-ui-react": "^0.71.1",
+    "shortid": "^2.2.8"
   },
   "scripts": {
     "start": "react-scripts-ts start",

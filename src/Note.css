@@ -1,13 +1,7 @@
 .skuNote {
     display: inline-block;
     flex: 1;
-    font-size: 2vh;
+    font-size: 2vmin;
     color: #555;
     font-weight: lighter;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    .skuNote {
-        font-size: 2vw;
-    }
 }

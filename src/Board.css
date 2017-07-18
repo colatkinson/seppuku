@@ -2,15 +2,8 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 75vh;
-    height: 75vh !important;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    .skuBoard {
-        width: 75vw;
-        height: 75vw !important;
-    }
+    width: 75vmin;
+    height: 75vmin !important;
 }
 
 .skuBoardRow {
