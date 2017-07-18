@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     width: 75vmin;
     height: 75vmin !important;
+    cursor: default;
 }
 
 .skuBoardRow {

@@ -17,7 +17,7 @@ class Note extends React.Component<NoteProps, {}> {
             <div
                 className = "skuNote"
             >
-                {(this.props.display) ? this.props.value : ''}
+                {(this.props.display) ? this.props.value : '\u00A0'}
             </div>
         );
     }
