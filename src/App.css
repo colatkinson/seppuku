@@ -2,6 +2,9 @@
   text-align: center;
   display: flex;
   flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-aspect-ratio: 1/1) {
@@ -11,7 +14,7 @@
 }
 
 .boardHolderDiv {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
@@ -26,7 +29,7 @@
     flex: 1;
     justify-content: flex-start;
     align-items: center;
-    display: flex;
+    display: inline-flex;
 }
 
 @media (max-aspect-ratio: 1/1) {

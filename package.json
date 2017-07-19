@@ -21,6 +21,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "seedrandom": "^2.4.3",
+    "semantic-ui-css": "^2.2.11",
     "semantic-ui-react": "^0.71.1",
     "shortid": "^2.2.8"
   },

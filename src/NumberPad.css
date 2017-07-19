@@ -7,8 +7,26 @@
     flex-wrap: wrap;
 }
 
+.numPadVertical, .numPadHorizontal {
+    flex-wrap: wrap;
+    max-width: 100vmin;
+    max-height: 100vmin;
+}
+
+.numPadVertical {
+    display: inherit;
+}
+
+.numPadHorizontal {
+    display: none !important;
+}
+
 @media (max-aspect-ratio: 1/1) {
-    .numPad {
-        flex-direction: row;
+    .numPadVertical {
+        display: none !important;
+    }
+
+    .numPadHorizontal {
+        display: inherit !important;
     }
 }

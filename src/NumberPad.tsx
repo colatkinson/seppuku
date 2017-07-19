@@ -4,6 +4,8 @@ import NumberButton from './NumberButton';
 import { connect } from 'react-redux';
 import { enterNum, setNoteMode, SudokuState } from './reduxFns';
 
+import { Button } from 'semantic-ui-react';
+
 import './NumberPad.css';
 
 interface NumberPadProps {
@@ -14,27 +16,44 @@ interface NumberPadProps {
 
 class NumberPad extends React.Component<NumberPadProps, {}> {
     render() {
-        const numButtons = [];
-        for (let digit = 1; digit <= 9; ++digit) {
-            numButtons.push(
-                <NumberButton value = {digit} onClick = {this.props.onClick} key = {digit} />
-            );
-        }
-
-        numButtons.push(
-            <NumberButton display = "X" value = {0} onClick = {this.props.onClick} key = {0} />
-        );
-
         const newFn = () => {
             if (typeof this.props.setNoteMode !== 'undefined') {
                 this.props.setNoteMode(!this.props.noteMode);
             }
         };
 
+        const numButtons = [(
+            <NumberButton value = "" onClick = {newFn} icon = {true}>
+                <i className = {'icon ' + (this.props.noteMode ? 'edit' : 'write')} />
+            </NumberButton>
+        )];
+        for (let digit = 1; digit <= 9; ++digit) {
+            numButtons.push(
+                <NumberButton value = {digit} onClick = {this.props.onClick} key = {digit}>
+                    {digit}
+                </NumberButton>
+            );
+        }
+
+        numButtons.push(
+            <NumberButton
+                icon = {false}
+                value = {0}
+                onClick = {this.props.onClick}
+                key = {0}
+            >
+                <i className = "window close icon" />
+            </NumberButton>
+        );
+
         return (
             <div className = "numPad">
-                <NumberButton value = {!this.props.noteMode ? '\u270f' : '\u2711'} onClick = {newFn} />
-                {numButtons}
+                <Button.Group vertical = {true} className = "numPadVertical">
+                    {numButtons}
+                </Button.Group>
+                <Button.Group vertical = {false} className = "numPadHorizontal">
+                    {numButtons}
+                </Button.Group>
             </div>
         );
     }
