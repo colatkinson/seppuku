@@ -8,11 +8,13 @@ class Game extends React.Component<{}, {}> {
   render() {
     return (
         <div className = "Game">
-            <div className = "boardHolderDiv">
-                <Board seed = "hello." />
-            </div>
-            <div className = "numPadHolderDiv">
-                <NumberPad />
+            <div>
+                <div className = "boardHolderDiv">
+                    <Board seed = "hello." />
+                </div>
+                <div className = "numPadHolderDiv">
+                    <NumberPad />
+                </div>
             </div>
         </div>
     );
