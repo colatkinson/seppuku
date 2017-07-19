@@ -113,6 +113,15 @@ class Board extends React.Component<BoardProps, {}> {
         }
         return (
             <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)}>
+                <h1
+                    style = {
+                        {display: ((typeof this.props.curBoard !== 'undefined') &&
+                                    sku.isComplete(this.props.curBoard))
+                                  ? 'block'
+                                  : 'none'}}
+                >
+                    You won!
+                </h1>
                 {rows}
             </div>
         );

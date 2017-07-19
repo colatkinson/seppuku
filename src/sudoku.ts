@@ -159,6 +159,10 @@ function genSolnFromSeed(seed: string) {
     return solve(board);
 }
 
+function isComplete(board: number[]) {
+    return (isBoardValid(board) && board.indexOf(0) === -1);
+}
+
 // function main() {
 //     const soln = genSolnFromSeed('hello.world.jaypeg');
 //
@@ -172,5 +176,6 @@ function genSolnFromSeed(seed: string) {
 export default {
     genSolnFromSeed: genSolnFromSeed,
     genFromSolved: genFromSolved,
-    getSquare: getSquare
+    getSquare: getSquare,
+    isComplete: isComplete
 };
