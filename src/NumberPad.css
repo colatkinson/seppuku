@@ -9,8 +9,13 @@
 
 .numPadVertical, .numPadHorizontal {
     flex-wrap: wrap;
-    max-width: 100vmin;
-    max-height: 100vmin;
+    max-width: 75vmin;
+    max-height: 75vmin;
+    border-radius: 0px;
+}
+
+.ui.button {
+    border-radius: 0px !important;
 }
 
 .numPadVertical {
