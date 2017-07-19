@@ -37,7 +37,7 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
 
         numButtons.push(
             <NumberButton
-                icon = {false}
+                icon = {true}
                 value = {0}
                 onClick = {this.props.onClick}
                 key = {0}
