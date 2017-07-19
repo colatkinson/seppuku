@@ -7,6 +7,15 @@
   height: 100%;
 }
 
+.gameHolder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .boardHolderDiv {
     display: inline-flex;
     flex-direction: row;
@@ -27,6 +36,9 @@
 }
 
 @media (max-aspect-ratio: 1/1) {
+    .gameHolder {
+        flex-direction: column;
+    }
     .boardHolderDiv {
         padding: 0px;
         padding-top: 2vmin;

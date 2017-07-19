@@ -8,7 +8,7 @@ class Game extends React.Component<{}, {}> {
   render() {
     return (
         <div className = "Game">
-            <div>
+            <div className = "gameHolder">
                 <div className = "boardHolderDiv">
                     <Board seed = "hello." />
                 </div>
