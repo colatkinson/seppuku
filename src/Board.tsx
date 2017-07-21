@@ -88,6 +88,8 @@ class Board extends React.Component<BoardProps, {}> {
                     noteSquare.push(notes[idSquare[m]]);
                 }
 
+                // c6abff
+
                 boxes.push(
                     <Box
                         selectedIndex = {this.props.selectedIndex}
@@ -101,7 +103,7 @@ class Board extends React.Component<BoardProps, {}> {
                         notes = {noteSquare}
                         style = {{
                             backgroundColor: ((i * 3 + j) % 2 === 0) ?
-                                '#d1c4e9' : 'white'}}
+                                '#d9c7ff' : 'white'}}
                     />
                 );
             }

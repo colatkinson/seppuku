@@ -9,7 +9,7 @@ class Header extends React.Component<{}, {}> {
   render() {
     return (
         <div className = "Header">
-            <Button className = "icon">
+            <Button className = "icon" color = "violet">
                 <i className = "icon home" />
             </Button>
             <h1 className = "headerTitle">

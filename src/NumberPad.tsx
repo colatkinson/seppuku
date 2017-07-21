@@ -23,7 +23,7 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
         };
 
         const numButtons = [(
-            <NumberButton value = "" onClick = {newFn} icon = {true}>
+            <NumberButton value = "" onClick = {newFn} icon = {true} key = "write">
                 <i className = {'icon ' + (this.props.noteMode ? 'edit' : 'write')} />
             </NumberButton>
         )];

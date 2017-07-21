@@ -2,15 +2,20 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    outline: 1px solid #673ab7;
+    outline: 1px solid #6435c9;
     font-size: 7vmin;
     flex-grow: 1;
-    color: #333;
     font-weight: lighter;
     width: 100%;
     height: 100%;
     justify-content: center;
     text-align: center;
+}
+
+
+.skuCell.invalid {
+    background-color: rgba(229, 57, 37, 0.15);
+    color: #e53925;
 }
 
 .skuCell.sel {
@@ -19,9 +24,4 @@
 
 .skuCell.orig {
     font-weight: 800;
-}
-
-.skuCell.invalid {
-    background-color: rgba(229, 57, 37, 0.15);
-    color: #e53925;
 }

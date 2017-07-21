@@ -21,6 +21,7 @@ class NumberButton extends React.Component<NumberButtonProps, {}> {
                         this.props.onClick(this.props.value);
                     }
                 }}
+                color = "violet"
             >
                 {this.props.children}
             </Button>
