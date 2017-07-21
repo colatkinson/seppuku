@@ -12,6 +12,9 @@ class Header extends React.Component<{}, {}> {
             <Button className = "icon">
                 <i className = "icon home" />
             </Button>
+            <h1 className = "headerTitle">
+                Seppuku
+            </h1>
         </div>
     );
   }

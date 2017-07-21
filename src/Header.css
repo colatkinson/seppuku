@@ -1,3 +1,10 @@
 .Header {
     padding-bottom: 5vh;
 }
+
+.headerTitle {
+    display: inline-block;
+    margin-top: 0px;
+    vertical-align: middle;
+    padding-left: 0.25em;
+}

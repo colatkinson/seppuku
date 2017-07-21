@@ -48,10 +48,10 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
 
         return (
             <div className = "numPad">
-                <Button.Group vertical = {true} className = "numPadVertical">
+                <Button.Group vertical = {true} className = "numPadVertical" key = "vert">
                     {numButtons}
                 </Button.Group>
-                <Button.Group vertical = {false} className = "numPadHorizontal">
+                <Button.Group vertical = {false} className = "numPadHorizontal" key = "horiz">
                     {numButtons}
                 </Button.Group>
             </div>
