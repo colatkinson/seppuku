@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 import './App.css';
@@ -21,17 +22,19 @@ class App extends React.Component<{}, {}> {
                     <Header />
                 </div>
                 <div className = "appContent">
-                    <Route exact = {true} path = "/" component = {Home} />
-                    <Route
-                        exact = {true}
-                        path = "/g/:seed"
-                        render = {
-                            (props) => {
-                                return <Game match = {props.match} />;
+                    <Switch>
+                        <Route exact = {true} path = "/" component = {Home} />
+                        <Route
+                            exact = {true}
+                            path = "/g/:seed"
+                            render = {
+                                (props) => {
+                                    return <Game match = {props.match} />;
+                                }
                             }
-                        }
-                    />
-                    <Route component = {NotFound} />
+                        />
+                        <Route component = {NotFound} />
+                    </Switch>
                 </div>
             </div>
         </Router>

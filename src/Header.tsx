@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 import { Button } from 'semantic-ui-react';
@@ -9,9 +10,11 @@ class Header extends React.Component<{}, {}> {
   render() {
     return (
         <div className = "Header">
-            <Button className = "icon" color = "violet">
-                <i className = "icon home" />
-            </Button>
+            <Link to = "/">
+                <Button className = "icon" color = "violet">
+                    <i className = "icon home" />
+                </Button>
+            </Link>
             <h1 className = "headerTitle">
                 Seppuku
             </h1>
