@@ -9,6 +9,7 @@ import './App.css';
 
 import Game from './Game';
 import Home from './Home';
+import NotFound from './NotFound';
 import Header from './Header';
 
 class App extends React.Component<{}, {}> {
@@ -30,6 +31,7 @@ class App extends React.Component<{}, {}> {
                             }
                         }
                     />
+                    <Route component = {NotFound} />
                 </div>
             </div>
         </Router>
