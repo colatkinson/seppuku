@@ -24,9 +24,13 @@ class Cell extends React.Component<CellProps, {}> {
         const invalid = this.props.value !== 0 && this.props.soln !== this.props.value;
         var content = (<span>{this.props.value}</span>);
         if (this.props.value === 0) {
-            content = (
-                <NoteBox values = {this.props.notes} />
-            );
+            if (this.props.notes.every((element) => (element === false))) {
+                content = (<span>{'\u00A0'}</span>);
+            } else {
+                content = (
+                    <NoteBox values = {this.props.notes} />
+                );
+            }
         }
         return (
             <div
