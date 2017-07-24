@@ -1,12 +1,17 @@
 import * as React from 'react';
-// import Cell from './Cell';
 import Box from './Box';
 import './Board.css';
 
 import sku from './sudoku';
 
 import { connect } from 'react-redux';
-import { genBoard, selectCell, SudokuState } from './reduxFns';
+import {
+    genBoard,
+    selectCell,
+    enterNum,
+    setNoteMode,
+    SudokuState
+} from './reduxFns';
 
 interface BoardProps {
     seed: string;
@@ -17,6 +22,9 @@ interface BoardProps {
     origBoard?: number[];
     solnBoard?: number[];
     curNotes?: boolean[][];
+    setNoteMode?: Function;
+    noteMode?: boolean;
+    onNumber?: Function;
 }
 
 class Board extends React.Component<BoardProps, {}> {
@@ -40,7 +48,18 @@ class Board extends React.Component<BoardProps, {}> {
     }
 
     keyUp(e: React.KeyboardEvent<HTMLDivElement>) {
-        alert(e);
+        if (!this.props.setNoteMode || typeof this.props.noteMode === 'undefined' || !this.props.onNumber) {
+            return;
+        }
+
+        const numVal = Number.parseInt(e.key);
+        if (e.key === 'Shift') {
+            this.props.setNoteMode(!this.props.noteMode);
+        } else if (e.key === 'Delete') {
+            this.props.onNumber(0);
+        } else if (!isNaN(numVal) && this.props.onNumber) {
+            this.props.onNumber(numVal);
+        }
     }
 
     render() {
@@ -114,7 +133,7 @@ class Board extends React.Component<BoardProps, {}> {
             );
         }
         return (
-            <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)}>
+            <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)} tabIndex = {1}>
                 <h1
                     style = {
                         {display: ((typeof this.props.curBoard !== 'undefined') &&
@@ -136,7 +155,8 @@ const mapStateToProps = (state: SudokuState) => {
         curBoard: state.curBoard,
         origBoard: state.origBoard,
         solnBoard: state.soln,
-        curNotes: state.curNotes
+        curNotes: state.curNotes,
+        noteMode: state.noteMode
     };
 };
 
@@ -147,6 +167,12 @@ const mapDispatchToProps = (dispatch: Function) => {
         },
         onCellClicked: (index: number) => {
             dispatch(selectCell(index));
+        },
+        onNumber: (val: number) => {
+            dispatch(enterNum(val));
+        },
+        setNoteMode: (val: boolean) => {
+            dispatch(setNoteMode(val));
         }
     };
 };
