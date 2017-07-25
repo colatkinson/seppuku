@@ -48,7 +48,9 @@ class Board extends React.Component<BoardProps, {}> {
     }
 
     keyUp(e: React.KeyboardEvent<HTMLDivElement>) {
-        if (!this.props.setNoteMode || typeof this.props.noteMode === 'undefined' || !this.props.onNumber) {
+        if (!this.props.setNoteMode || typeof this.props.noteMode === 'undefined' ||
+            !this.props.onNumber ||
+            !this.props.onCellClicked || typeof this.props.selectedIndex === 'undefined') {
             return;
         }
 
@@ -59,6 +61,30 @@ class Board extends React.Component<BoardProps, {}> {
             this.props.onNumber(0);
         } else if (!isNaN(numVal) && this.props.onNumber) {
             this.props.onNumber(numVal);
+        } else if (e.key === 'ArrowUp') {
+            let newInd = this.props.selectedIndex - 9;
+            if (newInd < 0) {
+                newInd += 81;
+            }
+            this.props.onCellClicked(newInd);
+        } else if (e.key === 'ArrowDown') {
+            let newInd = this.props.selectedIndex + 9;
+            if (newInd > 80) {
+                newInd -= 81;
+            }
+            this.props.onCellClicked(newInd);
+        } else if (e.key === 'ArrowLeft') {
+            let newInd = this.props.selectedIndex - 1;
+            if ((newInd + 1) % 9 === 0) {
+                newInd += 9;
+            }
+            this.props.onCellClicked(newInd);
+        } else if (e.key === 'ArrowRight') {
+            let newInd = this.props.selectedIndex + 1;
+            if (newInd % 9 === 0) {
+                newInd -= 9;
+            }
+            this.props.onCellClicked(newInd);
         }
     }
 
