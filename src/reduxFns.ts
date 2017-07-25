@@ -69,7 +69,7 @@ const initialState: SudokuState = {
 function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
         case GEN_BOARD:
-            return Object.assign({}, state, {
+            return Object.assign({}, initialState, {
                 origBoard: action.board,
                 curBoard: action.board,
                 soln: action.soln

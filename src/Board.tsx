@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Button, Header, Modal } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import * as shortid from 'shortid';
 import Box from './Box';
 import './Board.css';
 
@@ -169,6 +172,23 @@ class Board extends React.Component<BoardProps, {}> {
                 >
                     You won!
                 </h1>
+                <Modal
+                    basic = {true}
+                    size = "small"
+                    open = {(typeof this.props.curBoard !== 'undefined') && sku.isComplete(this.props.curBoard)}
+                >
+                    <Header icon = "smile" content = "You won!" />
+                    <Modal.Content>
+                        <p>I bet you can't do the next one, though!</p>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Link to = {'/g/' + shortid.generate()}>
+                            <Button basic = {true} color = "violet" inverted = {true}>
+                                New Game
+                            </Button>
+                        </Link>
+                    </Modal.Actions>
+                </Modal>
                 {rows}
             </div>
         );
