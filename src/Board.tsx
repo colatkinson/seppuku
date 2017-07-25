@@ -183,7 +183,7 @@ class Board extends React.Component<BoardProps, {}> {
                     </Modal.Content>
                     <Modal.Actions>
                         <Link to = {'/g/' + shortid.generate()}>
-                            <Button basic = {true} color = "violet" inverted = {true}>
+                            <Button color = "violet" inverted = {true}>
                                 New Game
                             </Button>
                         </Link>
