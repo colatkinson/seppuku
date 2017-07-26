@@ -7,6 +7,10 @@
     cursor: default !important;
 }
 
+.skuBoard:focus {
+    outline: none;
+}
+
 .skuBoardRow {
     max-width: 100%;
     height: 100%;
