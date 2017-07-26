@@ -11,18 +11,20 @@
     justify-content: center;
     text-align: center;
 
-    box-shadow: 0px 0px 0px #6435c9;
-    transition: box-shadow 0.3s ease;
+    transition: background-color 0.3s ease-in;
 }
 
-
 .skuCell.invalid {
-    background-color: rgba(229, 57, 37, 0.15);
+    background: repeating-linear-gradient(45deg,
+        rgba(229, 57, 37, 0.2),
+        rgba(229, 57, 37, 0.2) 1vmin,
+        rgba(0, 0, 0, 0) 1vmin,
+        rgba(0, 0, 0, 0) 2vmin);
     color: #e53925;
 }
 
 .skuCell.sel {
-     box-shadow: 0px 0px 2vmin #6435c9;
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .skuCell.orig {
