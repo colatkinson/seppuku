@@ -190,15 +190,6 @@ class Board extends React.Component<BoardProps, {}> {
 
         return (
             <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)} tabIndex = {1}>
-                <h1
-                    style = {
-                        {display: ((typeof this.props.curBoard !== 'undefined') &&
-                                    sku.isComplete(this.props.curBoard))
-                                  ? 'block'
-                                  : 'none'}}
-                >
-                    You won!
-                </h1>
                 <Modal
                     basic = {true}
                     size = "small"
