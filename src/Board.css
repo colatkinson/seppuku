@@ -20,6 +20,11 @@
     justify-content: space-between;
 }
 
+.skuBoard .skuBoardRow:nth-of-type(odd) .skuBox:nth-of-type(odd),
+.skuBoard .skuBoardRow:nth-of-type(even) .skuBox:nth-of-type(even){
+    background-color: #d9c7ff;
+}
+
 .secret blockquote {
     border-left: 0.5em solid white;
     padding-left: 0.5em;

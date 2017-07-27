@@ -9,7 +9,6 @@ interface BoxProps {
     origValues: number[];
     ids: number[];
     selectedIndex?: number;
-    style: Object;
     notes: boolean[][];
     onClick: React.EventHandler<React.MouseEvent<HTMLDivElement>>;
     onKeyUp: React.EventHandler<React.KeyboardEvent<HTMLDivElement>>;
@@ -56,7 +55,7 @@ class Box extends React.Component<BoxProps, {}> {
             );
         }
         return (
-            <div className = "skuBox" style = {this.props.style}>
+            <div className = "skuBox">
                 {rows}
             </div>
         );

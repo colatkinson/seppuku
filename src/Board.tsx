@@ -170,9 +170,6 @@ class Board extends React.Component<BoardProps, {}> {
                         solns = {sku.getSquare(solnVals, j, i)}
                         ids = {idSquare}
                         notes = {noteSquare}
-                        style = {{
-                            backgroundColor: ((i * 3 + j) % 2 === 0) ?
-                                '#d9c7ff' : 'white'}}
                     />
                 );
             }
