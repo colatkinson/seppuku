@@ -45,6 +45,7 @@ interface SudokuState {
     curBoard?: number[];
     noteMode?: boolean;
     curNotes?: boolean[][];
+    lastNums?: number[];
 }
 
 const falseArr = [];
@@ -63,7 +64,8 @@ const initialState: SudokuState = {
     soln: undefined,
     curBoard: undefined,
     noteMode: false,
-    curNotes: initNotes
+    curNotes: initNotes,
+    lastNums: []
 };
 
 function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
@@ -87,9 +89,11 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
                 typeof state.origBoard === 'undefined' ||
                 typeof state.selectedIndex === 'undefined' ||
                 typeof action.value === 'undefined' ||
-                typeof state.curNotes === 'undefined') {
+                typeof state.curNotes === 'undefined' ||
+                typeof state.lastNums === 'undefined') {
                 return state;
             }
+
             if (state.origBoard[state.selectedIndex] !== 0) {
                 return state;
             }
@@ -97,8 +101,15 @@ function sudokuApp(state: SudokuState = initialState, action: SudokuAction) {
             if (!state.noteMode) {
                 const newBoard = state.curBoard.slice();
                 newBoard[state.selectedIndex] = action.value;
+
+                const newLastNums = state.lastNums.concat(action.value);
+                if (newLastNums.length > 7) {
+                    newLastNums.shift();
+                }
+
                 return Object.assign({}, state, {
-                    curBoard: newBoard
+                    curBoard: newBoard,
+                    lastNums: newLastNums
                 });
             } else {
                 if (action.value === 0) {

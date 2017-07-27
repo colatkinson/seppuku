@@ -28,7 +28,28 @@ interface BoardProps {
     setNoteMode?: Function;
     noteMode?: boolean;
     onNumber?: Function;
+    lastNums?: number[];
 }
+
+const isSameArr = (arr1: number[], arr2: number[]) => (
+    (arr1.length === arr2.length) &&
+    arr1.every((elem, index) => elem === arr2[index])
+);
+
+const jennyModal = (
+    <Modal basic = {true} size = "small" defaultOpen = {true} className = "secret">
+        <Header icon = "heart" content = "Jenny!" />
+        <Modal.Content>
+            <p>Shouts out Lauren for introducing me to the musical genius of Tommy Tutone!</p>
+            <blockquote>
+                <p>Jenny, I got your number</p>
+                <p>I need to make you mine</p>
+                <p>Jenny, don't change your number</p>
+                <p>867-5309</p>
+            </blockquote>
+        </Modal.Content>
+    </Modal>
+);
 
 class Board extends React.Component<BoardProps, {}> {
     constructor(props: BoardProps) {
@@ -161,6 +182,12 @@ class Board extends React.Component<BoardProps, {}> {
                 </div>
             );
         }
+
+        const modal = (typeof this.props.lastNums !== 'undefined') &&
+                       isSameArr(this.props.lastNums, [8, 6, 7, 5, 3, 0, 9])
+            ? jennyModal
+            : <span />;
+
         return (
             <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)} tabIndex = {1}>
                 <h1
@@ -189,6 +216,9 @@ class Board extends React.Component<BoardProps, {}> {
                         </Link>
                     </Modal.Actions>
                 </Modal>
+
+                {modal}
+
                 {rows}
             </div>
         );
@@ -202,7 +232,8 @@ const mapStateToProps = (state: SudokuState) => {
         origBoard: state.origBoard,
         solnBoard: state.soln,
         curNotes: state.curNotes,
-        noteMode: state.noteMode
+        noteMode: state.noteMode,
+        lastNums: state.lastNums
     };
 };
 

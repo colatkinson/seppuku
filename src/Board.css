@@ -19,3 +19,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.secret blockquote {
+    border-left: 0.5em solid white;
+    padding-left: 0.5em;
+}
