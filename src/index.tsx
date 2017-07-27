@@ -1,5 +1,6 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
@@ -10,7 +11,7 @@ import { sudokuApp } from './reduxFns';
 
 let store = createStore(sudokuApp);
 
-ReactDOM.render(
+render(
     <Provider store = {store}>
         <App />
     </Provider>,
