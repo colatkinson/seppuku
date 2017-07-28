@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Header, Modal } from 'semantic-ui-react';
+import { Button, Header, Modal, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import * as shortid from 'shortid';
 import Box from './Box';
@@ -9,6 +9,7 @@ import sku from './sudoku';
 
 import { connect } from 'react-redux';
 import {
+    startGenBoard,
     genBoard,
     selectCell,
     enterNum,
@@ -29,6 +30,8 @@ interface BoardProps {
     noteMode?: boolean;
     onNumber?: Function;
     lastNums?: number[];
+    onStartBoardGen?: Function;
+    generatingBoard?: boolean;
 }
 
 const isSameArr = (arr1: number[], arr2: number[]) => (
@@ -55,12 +58,24 @@ class Board extends React.Component<BoardProps, {}> {
     constructor(props: BoardProps) {
         super(props);
 
-        const soln = sku.genSolnFromSeed(props.seed);
-
-        if (typeof props.onBoardGen === 'undefined') {
-            return;
+        if (this.props.onStartBoardGen) {
+            this.props.onStartBoardGen();
         }
-        props.onBoardGen(sku.genFromSolved(soln), soln);
+    }
+
+    componentDidMount() {
+        window.setTimeout(
+            () => {
+                const soln = sku.genSolnFromSeed(this.props.seed);
+
+                if (typeof this.props.onBoardGen === 'undefined') {
+                    return;
+                }
+
+                this.props.onBoardGen(sku.genFromSolved(soln), soln);
+            },
+            0
+        );
     }
 
     cellClick(e: React.MouseEvent<HTMLDivElement>) {
@@ -187,6 +202,9 @@ class Board extends React.Component<BoardProps, {}> {
 
         return (
             <div className = "skuBoard" onKeyUp = {e => this.keyUp(e)} tabIndex = {1}>
+                <Dimmer active = {this.props.generatingBoard}>
+                    <Loader size = "massive">Loading</Loader>
+                </Dimmer>
                 <Modal
                     basic = {true}
                     size = "small"
@@ -221,7 +239,8 @@ const mapStateToProps = (state: SudokuState) => {
         solnBoard: state.soln,
         curNotes: state.curNotes,
         noteMode: state.noteMode,
-        lastNums: state.lastNums
+        lastNums: state.lastNums,
+        generatingBoard: state.generatingBoard
     };
 };
 
@@ -238,6 +257,9 @@ const mapDispatchToProps = (dispatch: Function) => {
         },
         setNoteMode: (val: boolean) => {
             dispatch(setNoteMode(val));
+        },
+        onStartBoardGen: () => {
+            dispatch(startGenBoard());
         }
     };
 };
