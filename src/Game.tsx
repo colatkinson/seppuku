@@ -8,6 +8,7 @@ import NumberPad from './NumberPad';
 /* tslint:disable */
 interface GameProps {
     match: any;
+    diff: string;
 }
 /* tslint:enable */
 
@@ -20,7 +21,10 @@ class Game extends React.Component<GameProps, {}> {
                         return (
                             <div className = "gameHolder">
                                 <div className = "boardHolderDiv">
-                                    <Board seed = {this.props.match.params.seed} />
+                                    <Board
+                                        seed = {this.props.match.params.seed}
+                                        diff = {this.props.diff}
+                                    />
                                 </div>
                                 <div className = "numPadHolderDiv">
                                     <NumberPad />

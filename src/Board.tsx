@@ -19,6 +19,7 @@ import {
 
 interface BoardProps {
     seed: string;
+    diff: string;
     onCellClicked?: Function;
     onBoardGen?: Function;
     selectedIndex?: number;
@@ -72,7 +73,21 @@ class Board extends React.Component<BoardProps, {}> {
                     return;
                 }
 
-                this.props.onBoardGen(sku.genFromSolvedMedium(soln), soln);
+                let genFn = null;
+
+                if (this.props.diff === 'easy') {
+                    genFn = sku.genFromSolvedMedium;
+                } else if (this.props.diff === 'med') {
+                    genFn = sku.genFromSolvedHard;
+                } else if (this.props.diff === 'hard') {
+                    genFn = sku.genFromSolvedEvil;
+                }
+
+                if (genFn === null) {
+                    return;
+                }
+
+                this.props.onBoardGen(genFn(soln), soln);
             },
             0
         );
