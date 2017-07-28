@@ -2,6 +2,7 @@
   "name": "sudoku",
   "version": "0.1.0",
   "private": true,
+  "license": "GPL-3.0",
   "devDependencies": {
     "react-scripts-ts": "2.3.2",
     "react-snapshot": "^1.1.0"
