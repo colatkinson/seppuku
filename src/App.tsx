@@ -26,8 +26,18 @@ class App extends React.Component<{}, {}> {
                         <Route exact = {true} path = "/" component = {Home} />
                         <Route
                             exact = {true}
-                            path = "/g/:seed"
-                            component = {Game}
+                            path = "/easy/:seed"
+                            render = {(props) => <Game diff = "easy" match = {props.match} />}
+                        />
+                        <Route
+                            exact = {true}
+                            path = "/med/:seed"
+                            render = {(props) => <Game diff = "med" match = {props.match} />}
+                        />
+                        <Route
+                            exact = {true}
+                            path = "/hard/:seed"
+                            render = {(props) => <Game diff = "hard" match = {props.match} />}
                         />
                         <Route component = {NotFound} />
                     </Switch>
