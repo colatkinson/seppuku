@@ -24,8 +24,8 @@
     min-height: 0px;
     min-width: 75vmin;
     flex: 1;
-    padding-right: 4vmin;
-    padding-left: 2vmin;
+    margin-right: 4vmin;
+    margin-left: 2vmin;
 }
 
 .numPadHolderDiv {
@@ -40,9 +40,9 @@
         flex-direction: column;
     }
     .boardHolderDiv {
-        padding: 0px;
-        padding-top: 2vmin;
-        padding-bottom: 4vmin;
+        margin: 0px;
+        margin-top: 2vmin;
+        margin-bottom: 4vmin;
         align-items: flex-end;
         justify-content: center;
         min-height: 75vmin;
@@ -52,6 +52,6 @@
     .numPadHolderDiv {
         justify-content: center;
         align-items: flex-start;
-        padding: 0px;
+        margin: 0px;
     }
 }
