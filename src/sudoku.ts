@@ -1,24 +1,24 @@
 import * as seedrandom from 'seedrandom';
 
-// function printBoard(board: number[]) {
-//     for (var i = 0; i < 81; ++i) {
-//         if (board[i] !== 0) {
-//             process.stdout.write(board[i].toString() + ' ');
-//         } else {
-//             process.stdout.write('_ ');
-//         }
-//
-//         if ((i + 1) % 3 === 0) {
-//             process.stdout.write('  ');
-//         }
-//         if ((i + 1) % 9 === 0) {
-//             process.stdout.write('\n');
-//         }
-//         if ((i + 1) % 27 === 0) {
-//             process.stdout.write('\n');
-//         }
-//     }
-// }
+function printBoard(board: number[]) {
+    for (var i = 0; i < 81; ++i) {
+        if (board[i] !== 0) {
+            process.stdout.write(board[i].toString() + ' ');
+        } else {
+            process.stdout.write('_ ');
+        }
+
+        if ((i + 1) % 3 === 0) {
+            process.stdout.write('  ');
+        }
+        if ((i + 1) % 9 === 0) {
+            process.stdout.write('\n');
+        }
+        if ((i + 1) % 27 === 0) {
+            process.stdout.write('\n');
+        }
+    }
+}
 
 function getRow(board: number[], ind: number) {
     return board.slice(ind * 9, (ind + 1) * 9);
@@ -76,41 +76,62 @@ function isBoardValid(board: number[]) {
 }
 
 function solve(board: number[]): number[] {
+    // If the board is invalid, there can be no solution
     if (!isBoardValid(board)) {
         return [];
     }
 
-    var unassigned = -1;
+    // Emulate a set
+    let visited = {};
 
-    for (var i = 0; i < 81; ++i) {
-        if (board[i] === 0) {
-            unassigned = i;
-        }
-    }
+    // Keep the states in a stack
+    let stack: number[][] = [];
+    stack.push(board);
 
-    if (unassigned === -1) {
-        return board;
-    }
-
-    for (var j = 1; j <= 9; ++j) {
-        var newBoard = board.slice();
-        newBoard[unassigned] = j;
-
-        if (!isBoardValid(newBoard)) {
-            continue;
+    do {
+        let curBoard = stack.pop();
+        if (typeof curBoard === 'undefined') {
+            throw Error('Something went wrong reading from the stack');
         }
 
-        var soln = solve(newBoard);
-        if (soln.length !== 0) {
-            return soln;
+        // Mark this state as visited
+        visited[curBoard.join('')] = true;
+
+        // Find the last unassigned cell
+        let unassigned = -1;
+
+        for (var i = 0; i < 81; ++i) {
+            if (curBoard[i] === 0) {
+                unassigned = i;
+            }
         }
-    }
+
+        // If the board is complete and valid, return it
+        if (unassigned === -1) {
+            return curBoard;
+        }
+
+        // Test every possible value of the state
+        for (var j = 1; j <= 9; ++j) {
+            var newBoard = curBoard.slice();
+            newBoard[unassigned] = j;
+
+            if (Object.prototype.hasOwnProperty.call(visited, newBoard.join('')) ||
+                !isBoardValid(newBoard)) {
+                continue;
+            }
+
+            stack.push(newBoard);
+        }
+    } while (stack.length > 0);
 
     return [];
 }
 
 function canBeDug(board: number[], x: number, y: number) {
+    // Iterate over all possible values
     for (var i = 1; i <= 9; ++i) {
+        // Ignore the current value, we know it works
         if (i === board[y * 9 + x]) {
             continue;
         }
@@ -119,9 +140,8 @@ function canBeDug(board: number[], x: number, y: number) {
 
         newBoard[y * 9 + x] = i;
 
-        // printBoard(newBoard);
-        // console.log('----');
-
+        // If the board can be solved with this different value, it follows
+        // that removing this cell would result in a nondeterministic board
         if (solve(newBoard).length !== 0) {
             return false;
         }
@@ -130,6 +150,7 @@ function canBeDug(board: number[], x: number, y: number) {
     return true;
 }
 
+// Implement the LtRTtB algorithm for digging
 function genFromSolved(board: number[]) {
     var newBoard = board.slice();
     for (var y = 0; y < 9; ++y) {
@@ -163,19 +184,10 @@ function isComplete(board: number[]) {
     return (isBoardValid(board) && board.indexOf(0) === -1);
 }
 
-// function main() {
-//     const soln = genSolnFromSeed('hello.world.jaypeg');
-//
-//     const puzzle = genFromSolved(soln);
-//
-//     printBoard(soln);
-//     printBoard(puzzle);
-// }
-
-// main();
 export default {
-    genSolnFromSeed: genSolnFromSeed,
-    genFromSolved: genFromSolved,
-    getSquare: getSquare,
-    isComplete: isComplete
+    genSolnFromSeed,
+    genFromSolved,
+    getSquare,
+    isComplete,
+    printBoard
 };
