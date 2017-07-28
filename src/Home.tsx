@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { Container, Button, Divider } from 'semantic-ui-react';
+import { Container, Button, ButtonGroup, Divider } from 'semantic-ui-react';
 import * as shortid from 'shortid';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -10,10 +10,22 @@ import './Home.css';
 interface HomeProps extends RouteComponentProps<{}> {}
 
 class Home extends React.Component<HomeProps, {}> {
-    onNewGameClick() {
+    onNewGameClick(diff: string) {
         const newSeed = shortid.generate();
 
-        this.props.history.push('/g/' + newSeed);
+        this.props.history.push('/' + diff + '/' + newSeed);
+    }
+
+    onEasyGameClick() {
+        this.onNewGameClick('easy');
+    }
+
+    onMedGameClick() {
+        this.onNewGameClick('med');
+    }
+
+    onHardGameClick() {
+        this.onNewGameClick('hard');
     }
 
     render() {
@@ -29,7 +41,19 @@ class Home extends React.Component<HomeProps, {}> {
                 <Divider />
 
                 <Container textAlign = "center">
-                    <Button size = "huge" color = "violet" onClick = {() => this.onNewGameClick()}>New Game</Button>
+                    <ButtonGroup>
+                        <Button size = "huge" color = "violet" onClick = {() => this.onEasyGameClick()}>
+                            Easy
+                        </Button>
+
+                        <Button size = "huge" color = "violet" onClick = {() => this.onMedGameClick()}>
+                            Medium
+                        </Button>
+
+                        <Button size = "huge" color = "violet" onClick = {() => this.onHardGameClick()}>
+                            Hard
+                        </Button>
+                    </ButtonGroup>
                 </Container>
 
                 </Container>
