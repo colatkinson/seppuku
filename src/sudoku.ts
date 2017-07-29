@@ -192,6 +192,33 @@ function genFromSolvedHard(board: number[]) {
     return newBoard;
 }
 
+function genFromSolvedMedium(board: number[]) {
+    const newBoard = board.slice();
+
+    // Every other row, switch direction
+    let rtl = false;
+
+    for (let y = 0; y < 9; ++y) {
+        if (!rtl) {
+            for (let x = 0; x < 9; x += 2) {
+                if (canBeDug(newBoard, x, y)) {
+                    newBoard[y * 9 + x] = 0;
+                }
+            }
+        } else {
+            for (let x = 7; x >= 0; x -= 2) {
+                if (canBeDug(newBoard, x, y)) {
+                    newBoard[y * 9 + x] = 0;
+                }
+            }
+        }
+
+        rtl = !rtl;
+    }
+
+    return newBoard;
+}
+
 function genSolnFromSeed(seed: string) {
     const rng = seedrandom(seed);
 
@@ -216,6 +243,7 @@ export default {
     genSolnFromSeed,
     genFromSolvedHard,
     genFromSolvedEvil,
+    genFromSolvedMedium,
     getSquare,
     isComplete,
     printBoard

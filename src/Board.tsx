@@ -72,7 +72,7 @@ class Board extends React.Component<BoardProps, {}> {
                     return;
                 }
 
-                this.props.onBoardGen(sku.genFromSolvedEvil(soln), soln);
+                this.props.onBoardGen(sku.genFromSolvedMedium(soln), soln);
             },
             0
         );
