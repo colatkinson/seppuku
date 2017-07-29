@@ -3,6 +3,7 @@ import { Button, Header, Modal, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import * as shortid from 'shortid';
 import Box from './Box';
+import 'semantic-ui-css/semantic.min.css';
 import './Board.css';
 
 import sku from './sudoku';

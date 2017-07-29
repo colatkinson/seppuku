@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import Board from './Board';
 import NumberPad from './NumberPad';
+import ShareButton from './ShareButton';
 
 /* tslint:disable */
 interface GameProps {
@@ -20,6 +21,7 @@ class Game extends React.Component<GameProps, {}> {
                     component = {() => {
                         return (
                             <div className = "gameHolder">
+                                <ShareButton />
                                 <div className = "boardHolderDiv">
                                     <Board
                                         seed = {this.props.match.params.seed}
