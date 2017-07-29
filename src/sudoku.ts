@@ -151,14 +151,42 @@ function canBeDug(board: number[], x: number, y: number) {
 }
 
 // Implement the LtRTtB algorithm for digging
-function genFromSolved(board: number[]) {
-    var newBoard = board.slice();
-    for (var y = 0; y < 9; ++y) {
-        for (var x = 0; x < 9; ++x) {
+function genFromSolvedEvil(board: number[]) {
+    const newBoard = board.slice();
+    for (let y = 0; y < 9; ++y) {
+        for (let x = 0; x < 9; ++x) {
             if (canBeDug(newBoard, x, y)) {
                 newBoard[y * 9 + x] = 0;
             }
         }
+    }
+
+    return newBoard;
+}
+
+// Implementation of S algorithm
+function genFromSolvedHard(board: number[]) {
+    const newBoard = board.slice();
+
+    // Every other row, switch direction
+    let rtl = false;
+
+    for (let y = 0; y < 9; ++y) {
+        if (!rtl) {
+            for (let x = 0; x < 9; ++x) {
+                if (canBeDug(newBoard, x, y)) {
+                    newBoard[y * 9 + x] = 0;
+                }
+            }
+        } else {
+            for (let x = 8; x >= 0; --x) {
+                if (canBeDug(newBoard, x, y)) {
+                    newBoard[y * 9 + x] = 0;
+                }
+            }
+        }
+
+        rtl = !rtl;
     }
 
     return newBoard;
@@ -186,7 +214,8 @@ function isComplete(board: number[]) {
 
 export default {
     genSolnFromSeed,
-    genFromSolved,
+    genFromSolvedHard,
+    genFromSolvedEvil,
     getSquare,
     isComplete,
     printBoard
