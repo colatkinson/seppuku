@@ -5,7 +5,7 @@
     width: 75vmin;
     height: 75vmin !important;
     cursor: default !important;
-    border: 0.4vmin solid #673ab7;
+    border: 0.3vmin solid #673ab7;
 }
 
 .skuBoard:focus {
