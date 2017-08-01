@@ -3,7 +3,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     flex-grow: 1;
-     border: 0.1vmin solid #673ab7;
+    border: 0.1vmin solid #673ab7;
     width: 100%;
     background-color: white;
 }

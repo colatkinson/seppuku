@@ -1,0 +1,25 @@
+.Toast {
+    display: inline-block;
+    position: absolute;
+    bottom: 5vh;
+    background-color: rgba(103, 58, 183, 0.8);
+    color: white;
+    min-width: 10vw;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.7;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 1em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+
+    transition: opacity 0.2s ease-in;
+    opacity: 1;
+    visibility: visible;
+}
+
+.Toast.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.2s, opacity 0.2s ease-in;
+}
