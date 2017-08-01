@@ -8,6 +8,12 @@
     background-color: white;
 }
 
+@media print {
+    .skuBox {
+        border-color: black;
+    }
+}
+
 .skuBoxRow {
     flex: 1;
     display: flex;

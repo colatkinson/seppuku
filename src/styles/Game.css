@@ -55,3 +55,9 @@
         margin: 0px;
     }
 }
+
+@media print {
+    .numPadHolderDiv {
+        display: none;
+    }
+}

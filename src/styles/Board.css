@@ -8,6 +8,18 @@
     border: 0.3vmin solid #673ab7;
 }
 
+@media print {
+    .skuBoard {
+        width: 85vmin !important;
+        height: 85vmin !important;
+        border-color: black;
+    }
+
+    .skuBoard .skuBoardRow .skuBox {
+        background-color: white !important;
+    }
+}
+
 .skuBoard:focus {
     outline: none;
 }

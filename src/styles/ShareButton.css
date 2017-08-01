@@ -4,3 +4,9 @@
     right: 0px;
     margin-right: 0px !important;
 }
+
+@media print {
+    .sharingBtn {
+        display: none !important;
+    }
+}

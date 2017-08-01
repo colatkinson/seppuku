@@ -9,3 +9,9 @@
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
+
+@media print {
+    .Header {
+        display: none;
+    }
+}
