@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Cell.css';
+import '../styles/Cell.css';
 
 import NoteBox from './NoteBox';
 

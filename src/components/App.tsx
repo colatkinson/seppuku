@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import './App.css';
+import '../styles/App.css';
 
 import Game from './Game';
 import Home from './Home';

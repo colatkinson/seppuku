@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Game.css';
+import '../styles/Game.css';
 import { Route } from 'react-router-dom';
 
 import Board from './Board';

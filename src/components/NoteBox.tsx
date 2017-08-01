@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Note from './Note';
 
-import './NoteBox.css';
+import '../styles/NoteBox.css';
 
 interface NoteBoxProps {
     values: boolean[];

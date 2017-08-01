@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Note.css';
+import '../styles/Note.css';
 
 interface NoteProps {
     value: number;

@@ -5,7 +5,7 @@ import * as CopyToClipboard from 'react-copy-to-clipboard';
 import Toast from './Toast';
 
 import 'semantic-ui-css/semantic.min.css';
-import './ShareButton.css';
+import '../styles/ShareButton.css';
 
 interface ShareButtonState {
     timer: number;

@@ -2,9 +2,9 @@ import 'normalize.css';
 
 import * as React from 'react';
 import { render } from 'react-snapshot';
-import App from './App';
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import './styles/index.css';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

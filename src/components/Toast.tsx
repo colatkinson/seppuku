@@ -5,7 +5,7 @@ interface ToastProps {
     children: string | JSX.Element;
 }
 
-import './Toast.css';
+import '../styles/Toast.css';
 
 class Toast extends React.Component<ToastProps, {}> {
     render() {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'semantic-ui-react';
 
-import './NumberButton.css';
+import '../styles/NumberButton.css';
 import 'semantic-ui-css/semantic.min.css';
 
 interface NumberButtonProps {

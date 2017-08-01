@@ -5,7 +5,7 @@ import * as shortid from 'shortid';
 
 import 'semantic-ui-css/semantic.min.css';
 
-import './Home.css';
+import '../styles/Home.css';
 
 interface HomeProps extends RouteComponentProps<{}> {}
 

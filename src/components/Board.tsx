@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import * as shortid from 'shortid';
 import Box from './Box';
 import 'semantic-ui-css/semantic.min.css';
-import './Board.css';
+import '../styles/Board.css';
 
-import sku from './sudoku';
+import sku from '../sudoku';
 
 import { connect } from 'react-redux';
 import {
@@ -16,7 +16,7 @@ import {
     enterNum,
     setNoteMode,
     SudokuState
-} from './reduxFns';
+} from '../reduxFns';
 
 interface BoardProps {
     seed: string;

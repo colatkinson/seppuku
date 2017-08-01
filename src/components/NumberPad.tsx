@@ -2,11 +2,11 @@ import * as React from 'react';
 import NumberButton from './NumberButton';
 
 import { connect } from 'react-redux';
-import { enterNum, setNoteMode, SudokuState } from './reduxFns';
+import { enterNum, setNoteMode, SudokuState } from '../reduxFns';
 
 import { Button } from 'semantic-ui-react';
 
-import './NumberPad.css';
+import '../styles/NumberPad.css';
 
 interface NumberPadProps {
     onClick?: Function;

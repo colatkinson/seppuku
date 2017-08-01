@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Cell from './Cell';
 
-import './Box.css';
+import '../styles/Box.css';
 
 interface BoxProps {
     values: number[];

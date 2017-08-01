@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import './NotFound.css';
+import '../styles/NotFound.css';
 
 interface NotFoundProps extends RouteComponentProps<{}> {}
 
