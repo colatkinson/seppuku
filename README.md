@@ -1,11 +1,23 @@
-![Logo](./public/icon_128.png)
+<h1 align = "center">
+<img src = "./public/icon_128.png" alt = "Logo" />
+
+<br />
 
 Seppuku
--------
-> An open source sudoku game
+</h1>
 
-[![Website](https://img.shields.io/website-up-down-green-red/https/seppuku.surge.sh.svg?style=flat-square)](https://seppuku.surge.sh)
-![license](https://img.shields.io/github/license/colatkinson/seppuku.svg?style=flat-square)
+<h4 align = "center">An open source sudoku game</h4>
+
+<p align = "center">
+    <a href = "https://seppuku.surge.sh">
+        <img src = "https://img.shields.io/website-up-down-green-red/https/seppuku.surge.sh.svg?style=flat-square" alt = "Website" />
+    </a>
+    <img src = "https://img.shields.io/github/license/colatkinson/seppuku.svg?style=flat-square" alt = "GPLv3 license" />
+    <img src = "https://img.shields.io/github/tag/colatkinson/seppuku.svg?style=flat-square" alt = "Github tag" />
+</p>
+
+
+![screencast](./compressed.gif)
 
 Seppuku runs entirely client-side, and is written with React, Redux, and Typescript, and uses the very nice `semantic-ui-react` and `react-snapshot` libraries. It implements algorithms from the paper [Sudoku Puzzles Generating: from Easy to Evil](http://zhangroup.aporc.org/images/files/Paper_3485.pdf).
 
