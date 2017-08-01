@@ -43,11 +43,13 @@ class ShareButton extends React.Component<{}, ShareButtonState> {
     }
 
     render() {
+        // Both of the elements will be positioned absolutely
         return (
             <div>
                 <CopyToClipboard text = {window.location.href} onCopy = {() => this.onCopy()}>
                     <Button className = "sharingBtn icon" color = "violet" size = "huge" icon = "share alternate" />
                 </CopyToClipboard>
+
                 <Toast show = {this.state.showToast}>
                     Link copied to clipboard
                 </Toast>

@@ -19,18 +19,9 @@ class Box extends React.Component<BoxProps, {}> {
         super(props);
     }
 
-    // shouldComponentUpdate(nextProps: BoxProps) {
-    //     const isSelected = !this.props.ids.every((elem) => elem !== nextProps.selectedIndex);
-    //     const wasSelected = !this.props.ids.every((elem) => elem !== this.props.selectedIndex);
-    //     const isValChanged = !this.props.values.every((elem, ind) => elem === nextProps.values[ind]);
-    //     if (isSelected || wasSelected || isValChanged) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     render() {
-        var rows = [];
+        // Array of rows of cells
+        const rows = [];
         for (var i = 0; i < 3; ++i) {
             var cells = [];
             for (var j = 0; j < 3; ++j) {

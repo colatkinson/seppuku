@@ -22,11 +22,14 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
             }
         };
 
+        // Initialize array with note/write mode toggle button
         const numButtons = [(
             <NumberButton value = "" onClick = {newFn} icon = {true} key = "write">
                 <i className = {'icon ' + (this.props.noteMode ? 'edit' : 'write')} />
             </NumberButton>
         )];
+
+        // Generate buttons for [1, 9]
         for (let digit = 1; digit <= 9; ++digit) {
             numButtons.push(
                 <NumberButton value = {digit} onClick = {this.props.onClick} key = {digit}>
@@ -35,6 +38,7 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
             );
         }
 
+        // Append button for 0, with special styling indicating it clears the value
         numButtons.push(
             <NumberButton
                 icon = {true}
@@ -46,6 +50,7 @@ class NumberPad extends React.Component<NumberPadProps, {}> {
             </NumberButton>
         );
 
+        // Create two num pads, one for horizontal layout and one for vertical
         return (
             <div className = "numPad">
                 <Button.Group vertical = {true} className = "numPadVertical" key = "vert">

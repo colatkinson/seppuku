@@ -21,12 +21,18 @@ class Cell extends React.Component<CellProps, {}> {
     }
 
     render() {
+        // Check if the value is incorrect
         const invalid = this.props.value !== 0 && this.props.soln !== this.props.value;
+
         var content = (<span>{this.props.value}</span>);
+
+        // Handle case of empty cell
         if (this.props.value === 0) {
             if (this.props.notes.every((element) => (element === false))) {
+                // If there are no notes, render nbsp
                 content = (<span>{'\u00A0'}</span>);
             } else {
+                // If there are notes, render them instead
                 content = (
                     <NoteBox values = {this.props.notes} />
                 );

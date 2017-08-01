@@ -32,29 +32,29 @@ class Home extends React.Component<HomeProps, {}> {
         return (
             <div className = "Home">
                 <Container text = {true}>
-                Welcome to Seppuku! We offer an exciting selection of billions of randomly-generated puzzles!
+                    Welcome to Seppuku! We offer an exciting selection of billions of randomly-generated puzzles!
 
-                <br />
+                    <br />
 
-                Please click below to start. The links to the puzzles are permanent, so you can share with friends!
+                    Please click below to start. The links to the puzzles are permanent, so you can share with friends!
 
-                <Divider />
+                    <Divider />
 
-                <Container textAlign = "center">
-                    <ButtonGroup>
-                        <Button size = "huge" color = "violet" onClick = {() => this.onEasyGameClick()}>
-                            Easy
-                        </Button>
+                    <Container textAlign = "center">
+                        <ButtonGroup>
+                            <Button size = "huge" color = "violet" onClick = {() => this.onEasyGameClick()}>
+                                Easy
+                            </Button>
 
-                        <Button size = "huge" color = "violet" onClick = {() => this.onMedGameClick()}>
-                            Medium
-                        </Button>
+                            <Button size = "huge" color = "violet" onClick = {() => this.onMedGameClick()}>
+                                Medium
+                            </Button>
 
-                        <Button size = "huge" color = "violet" onClick = {() => this.onHardGameClick()}>
-                            Hard
-                        </Button>
-                    </ButtonGroup>
-                </Container>
+                            <Button size = "huge" color = "violet" onClick = {() => this.onHardGameClick()}>
+                                Hard
+                            </Button>
+                        </ButtonGroup>
+                    </Container>
 
                 </Container>
             </div>

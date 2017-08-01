@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Button, Header, Modal, Dimmer, Loader } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import * as shortid from 'shortid';
+import { Header, Modal, Dimmer, Loader } from 'semantic-ui-react';
 import Box from './Box';
+import WonModal from './WonModal';
 import 'semantic-ui-css/semantic.min.css';
 import '../styles/Board.css';
 
@@ -143,7 +142,8 @@ class Board extends React.Component<BoardProps, {}> {
         }
     }
 
-    render() {
+    makeRows() {
+        // Generate a blank board and the unique ids of each cell
         const boardIds = [];
         const zeros = [];
         for (var k = 0; k < 81; ++k) {
@@ -151,6 +151,7 @@ class Board extends React.Component<BoardProps, {}> {
             zeros.push(0);
         }
 
+        // Handle undefined board
         const vals = (typeof this.props.curBoard === 'undefined')
                      ? zeros
                      : this.props.curBoard;
@@ -163,8 +164,9 @@ class Board extends React.Component<BoardProps, {}> {
                          ? zeros
                          : this.props.solnBoard;
 
+        // Make a base array for the notes, defaulting to empty
         const falseArr = [];
-        for (var a = 0; a < 9; ++a) {
+        for (let a = 0; a < 9; ++a) {
             falseArr.push(false);
         }
 
@@ -173,22 +175,24 @@ class Board extends React.Component<BoardProps, {}> {
             initNotes.push(falseArr.slice());
         }
 
+        // Default the notes to this value
         const notes = (typeof this.props.curNotes === 'undefined')
                       ? initNotes
                       : this.props.curNotes;
 
+        // Array of board rows
         var rows = [];
         for (var i = 0; i < 3; ++i) {
+            // Array of boxes within the row
             var boxes = [];
             for (var j = 0; j < 3; ++j) {
+                // Assign unique ID to each element in this square
                 const idSquare = sku.getSquare(boardIds, j, i);
 
                 const noteSquare = [];
                 for (var m = 0; m < idSquare.length; ++m) {
                     noteSquare.push(notes[idSquare[m]]);
                 }
-
-                // c6abff
 
                 boxes.push(
                     <Box
@@ -211,6 +215,14 @@ class Board extends React.Component<BoardProps, {}> {
             );
         }
 
+        return rows;
+    }
+
+    render() {
+        // Generate each 9x3 row of the board
+        const rows = this.makeRows();
+
+        // Don't worry about it
         const modal = (typeof this.props.lastNums !== 'undefined') &&
                        isSameArr(this.props.lastNums, [8, 6, 7, 5, 3, 0, 9])
             ? jennyModal
@@ -221,23 +233,14 @@ class Board extends React.Component<BoardProps, {}> {
                 <Dimmer active = {this.props.generatingBoard}>
                     <Loader size = "massive">Loading</Loader>
                 </Dimmer>
-                <Modal
-                    basic = {true}
-                    size = "small"
-                    open = {(typeof this.props.curBoard !== 'undefined') && sku.isComplete(this.props.curBoard)}
-                >
-                    <Header icon = "smile" content = "You won!" />
-                    <Modal.Content>
-                        <p>I bet you can't do the next one, though!</p>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Link to = {'/' + this.props.diff + '/' + shortid.generate()}>
-                            <Button color = "violet" inverted = {true}>
-                                New Game
-                            </Button>
-                        </Link>
-                    </Modal.Actions>
-                </Modal>
+
+                <WonModal
+                    diff = {this.props.diff}
+                    open = {
+                        (typeof this.props.curBoard !== 'undefined') &&
+                        sku.isComplete(this.props.curBoard)
+                    }
+                />
 
                 {modal}
 
