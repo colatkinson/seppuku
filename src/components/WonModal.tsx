@@ -23,6 +23,12 @@ class WonModal extends React.Component<WonModalProps, {}> {
                     <p>I bet you can't do the next one, though!</p>
                 </Modal.Content>
                 <Modal.Actions>
+                    <Link to = "/">
+                        <Button inverted = {true}>
+                            Home
+                        </Button>
+                    </Link>
+
                     <Link to = {'/' + this.props.diff + '/' + shortid.generate()}>
                         <Button color = "violet" inverted = {true}>
                             New Game
