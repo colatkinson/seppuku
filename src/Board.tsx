@@ -231,7 +231,7 @@ class Board extends React.Component<BoardProps, {}> {
                         <p>I bet you can't do the next one, though!</p>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Link to = {'/g/' + shortid.generate()}>
+                        <Link to = {'/' + this.props.diff + '/' + shortid.generate()}>
                             <Button color = "violet" inverted = {true}>
                                 New Game
                             </Button>
