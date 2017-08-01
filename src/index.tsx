@@ -1,5 +1,6 @@
+import 'normalize.css';
+
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { render } from 'react-snapshot';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';

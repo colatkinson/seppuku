@@ -18,6 +18,7 @@
     "@types/react-router-dom": "^4.0.5",
     "@types/seedrandom": "^2.4.27",
     "@types/shortid": "^0.0.29",
+    "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
