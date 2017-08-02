@@ -3,7 +3,7 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import * as shortid from 'shortid';
 import 'semantic-ui-css/semantic.min.css';
-import '../styles/Board.css';
+import '../styles/WonModal.css';
 
 interface WonModalProps {
     open: boolean;
@@ -17,6 +17,7 @@ class WonModal extends React.Component<WonModalProps, {}> {
                 basic = {true}
                 size = "small"
                 open = {this.props.open}
+                className = "WonModal"
             >
                 <Header icon = "smile" content = "You won!" />
                 <Modal.Content>

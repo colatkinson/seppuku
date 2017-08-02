@@ -1,0 +1,9 @@
+@media print {
+    .WonModal {
+        display: none !important;
+    }
+
+    .ui.visible.modals.dimmer {
+        display: none !important;
+    }
+}
