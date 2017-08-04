@@ -29,7 +29,7 @@
 }
 
 .numPadHolderDiv {
-    flex: 1;
+    flex: 0 1 0%;
     justify-content: flex-start;
     align-items: center;
     display: inline-flex;
